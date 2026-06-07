@@ -14,5 +14,8 @@
 			"indentStyle": "tab",
 			"indentWidth": 4
 		}
+	},
+	"files": {
+		"includes": ["!src/gql/**/*"]
 	}
 }
