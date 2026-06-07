@@ -1,5 +1,7 @@
 /* eslint-disable */
-import * as types from "./graphql";
+import * as types from './graphql';
+
+
 
 /**
  * Map of all GraphQL operations in the project.
@@ -13,20 +15,18 @@ import * as types from "./graphql";
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 type Documents = {
-	"query TestQuery($page: Int, $perPage: Int) {\n  Page(page: $page, perPage: $perPage) {\n    media {\n      title {\n        romaji\n        english\n        native\n      }\n    }\n  }\n}": typeof types.TestQueryDocument;
+    "query TestQuery($page: Int, $perPage: Int) {\n  Page(page: $page, perPage: $perPage) {\n    media {\n      title {\n        romaji\n        english\n        native\n      }\n    }\n  }\n}": typeof types.TestQueryDocument,
 };
 const documents: Documents = {
-	"query TestQuery($page: Int, $perPage: Int) {\n  Page(page: $page, perPage: $perPage) {\n    media {\n      title {\n        romaji\n        english\n        native\n      }\n    }\n  }\n}":
-		types.TestQueryDocument,
+    "query TestQuery($page: Int, $perPage: Int) {\n  Page(page: $page, perPage: $perPage) {\n    media {\n      title {\n        romaji\n        english\n        native\n      }\n    }\n  }\n}": types.TestQueryDocument,
 };
 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(
-	source: "query TestQuery($page: Int, $perPage: Int) {\n  Page(page: $page, perPage: $perPage) {\n    media {\n      title {\n        romaji\n        english\n        native\n      }\n    }\n  }\n}"
-): typeof import("./graphql").TestQueryDocument;
+export function graphql(source: "query TestQuery($page: Int, $perPage: Int) {\n  Page(page: $page, perPage: $perPage) {\n    media {\n      title {\n        romaji\n        english\n        native\n      }\n    }\n  }\n}"): typeof import('./graphql').TestQueryDocument;
+
 
 export function graphql(source: string) {
-	return (documents as any)[source] ?? {};
+  return (documents as any)[source] ?? {};
 }
