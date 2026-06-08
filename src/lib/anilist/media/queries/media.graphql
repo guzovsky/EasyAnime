@@ -1,0 +1,14 @@
+# -------------------------------------------------- Detail
+
+query MediaDetailQuery(
+	$mediaId: Int
+	$voiceActorLanguage: StaffLanguage
+	$recommendationSort: [RecommendationSort]
+	$staffSort: [StaffSort]
+) {
+	Media(id: $mediaId) {
+		...MediaDetail
+	}
+}
+
+# ---------------------------------------------------------
