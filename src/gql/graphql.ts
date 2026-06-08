@@ -175,6 +175,102 @@ export type StaffSort =
   | 'ROLE_DESC'
   | 'SEARCH_MATCH';
 
+export type TrendingAnimeQueryVariables = Exact<{
+  page?: number | null | undefined;
+  perPage?: number | null | undefined;
+}>;
+
+
+export type TrendingAnimeQuery = { Page: { media: Array<{ averageScore: number | null, description: string | null, status: MediaStatus | null, id: number, genres: Array<string | null> | null, format: MediaFormat | null, type: MediaType | null, title: { romaji: string | null, english: string | null, native: string | null } | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null };
+
+export type PopularAnimeQueryVariables = Exact<{
+  page?: number | null | undefined;
+  perPage?: number | null | undefined;
+}>;
+
+
+export type PopularAnimeQuery = { Page: { media: Array<{ averageScore: number | null, description: string | null, status: MediaStatus | null, id: number, genres: Array<string | null> | null, format: MediaFormat | null, type: MediaType | null, title: { romaji: string | null, english: string | null, native: string | null } | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null };
+
+export type PopularThisSeasonAnimeQueryVariables = Exact<{
+  page?: number | null | undefined;
+  perPage?: number | null | undefined;
+  season?: MediaSeason | null | undefined;
+  seasonYear?: number | null | undefined;
+}>;
+
+
+export type PopularThisSeasonAnimeQuery = { Page: { media: Array<{ averageScore: number | null, description: string | null, status: MediaStatus | null, id: number, genres: Array<string | null> | null, format: MediaFormat | null, type: MediaType | null, title: { romaji: string | null, english: string | null, native: string | null } | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null };
+
+export type UpcomingAnimeQueryVariables = Exact<{
+  page?: number | null | undefined;
+  perPage?: number | null | undefined;
+  season?: MediaSeason | null | undefined;
+  seasonYear?: number | null | undefined;
+}>;
+
+
+export type UpcomingAnimeQuery = { Page: { media: Array<{ averageScore: number | null, description: string | null, status: MediaStatus | null, id: number, genres: Array<string | null> | null, format: MediaFormat | null, type: MediaType | null, title: { romaji: string | null, english: string | null, native: string | null } | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null };
+
+export type TrendingAnimeBannerQueryVariables = Exact<{
+  page?: number | null | undefined;
+  perPage?: number | null | undefined;
+}>;
+
+
+export type TrendingAnimeBannerQuery = { Page: { media: Array<{ bannerImage: string | null, id: number, genres: Array<string | null> | null, type: MediaType | null, title: { romaji: string | null, english: string | null, native: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null };
+
+export type AnimeAllQueryVariables = Exact<{
+  page?: number | null | undefined;
+  perPage?: number | null | undefined;
+  popularThisSeasonSeason?: MediaSeason | null | undefined;
+  popularThisSeasonSeasonYear?: number | null | undefined;
+  upcomingSeason?: MediaSeason | null | undefined;
+  upcomingSeasonYear?: number | null | undefined;
+}>;
+
+
+export type AnimeAllQuery = { trendingAnimeBanner: { media: Array<{ bannerImage: string | null, id: number, genres: Array<string | null> | null, type: MediaType | null, title: { romaji: string | null, english: string | null, native: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null, trending: { media: Array<{ averageScore: number | null, description: string | null, status: MediaStatus | null, id: number, genres: Array<string | null> | null, format: MediaFormat | null, type: MediaType | null, title: { romaji: string | null, english: string | null, native: string | null } | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null, popular: { media: Array<{ averageScore: number | null, description: string | null, status: MediaStatus | null, id: number, genres: Array<string | null> | null, format: MediaFormat | null, type: MediaType | null, title: { romaji: string | null, english: string | null, native: string | null } | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null, popularThisSeason: { media: Array<{ averageScore: number | null, description: string | null, status: MediaStatus | null, id: number, genres: Array<string | null> | null, format: MediaFormat | null, type: MediaType | null, title: { romaji: string | null, english: string | null, native: string | null } | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null, upcoming: { media: Array<{ averageScore: number | null, description: string | null, status: MediaStatus | null, id: number, genres: Array<string | null> | null, format: MediaFormat | null, type: MediaType | null, title: { romaji: string | null, english: string | null, native: string | null } | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null };
+
+export type TrendingMangaQueryVariables = Exact<{
+  page?: number | null | undefined;
+  perPage?: number | null | undefined;
+}>;
+
+
+export type TrendingMangaQuery = { Page: { media: Array<{ averageScore: number | null, description: string | null, status: MediaStatus | null, id: number, genres: Array<string | null> | null, format: MediaFormat | null, type: MediaType | null, title: { romaji: string | null, english: string | null, native: string | null } | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null };
+
+export type PopularMangaQueryVariables = Exact<{
+  page?: number | null | undefined;
+  perPage?: number | null | undefined;
+}>;
+
+
+export type PopularMangaQuery = { Page: { media: Array<{ averageScore: number | null, description: string | null, status: MediaStatus | null, id: number, genres: Array<string | null> | null, format: MediaFormat | null, type: MediaType | null, title: { romaji: string | null, english: string | null, native: string | null } | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null };
+
+export type PopularManhwaQueryVariables = Exact<{
+  page?: number | null | undefined;
+  perPage?: number | null | undefined;
+}>;
+
+
+export type PopularManhwaQuery = { Page: { media: Array<{ averageScore: number | null, description: string | null, status: MediaStatus | null, id: number, genres: Array<string | null> | null, format: MediaFormat | null, type: MediaType | null, title: { romaji: string | null, english: string | null, native: string | null } | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null };
+
+export type TrendingMangaBannerQueryVariables = Exact<{
+  page?: number | null | undefined;
+  perPage?: number | null | undefined;
+}>;
+
+
+export type TrendingMangaBannerQuery = { Page: { media: Array<{ bannerImage: string | null, id: number, genres: Array<string | null> | null, type: MediaType | null, title: { romaji: string | null, english: string | null, native: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null };
+
+export type MangaAllQueryVariables = Exact<{
+  page?: number | null | undefined;
+  perPage?: number | null | undefined;
+}>;
+
+
+export type MangaAllQuery = { trendingMangaBanner: { media: Array<{ bannerImage: string | null, id: number, genres: Array<string | null> | null, type: MediaType | null, title: { romaji: string | null, english: string | null, native: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null, trending: { media: Array<{ averageScore: number | null, description: string | null, status: MediaStatus | null, id: number, genres: Array<string | null> | null, format: MediaFormat | null, type: MediaType | null, title: { romaji: string | null, english: string | null, native: string | null } | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null, popular: { media: Array<{ averageScore: number | null, description: string | null, status: MediaStatus | null, id: number, genres: Array<string | null> | null, format: MediaFormat | null, type: MediaType | null, title: { romaji: string | null, english: string | null, native: string | null } | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null, popularManhwa: { media: Array<{ averageScore: number | null, description: string | null, status: MediaStatus | null, id: number, genres: Array<string | null> | null, format: MediaFormat | null, type: MediaType | null, title: { romaji: string | null, english: string | null, native: string | null } | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null };
+
 export type MediaCardFragment = { averageScore: number | null, description: string | null, status: MediaStatus | null, id: number, genres: Array<string | null> | null, format: MediaFormat | null, type: MediaType | null, title: { romaji: string | null, english: string | null, native: string | null } | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null };
 
 export type MediaBannerFragment = { bannerImage: string | null, id: number, genres: Array<string | null> | null, type: MediaType | null, title: { romaji: string | null, english: string | null, native: string | null } | null };
@@ -430,6 +526,481 @@ export const PageInfoDataFragmentDoc = new TypedDocumentString(`
   }
 }
     `, {"fragmentName":"PageInfoData"}) as unknown as TypedDocumentString<PageInfoDataFragment, unknown>;
+export const TrendingAnimeDocument = new TypedDocumentString(`
+    query TrendingAnime($page: Int, $perPage: Int) {
+  Page(page: $page, perPage: $perPage) {
+    media(sort: TRENDING_DESC, type: ANIME) {
+      ...MediaCard
+    }
+    ...PageInfoData
+  }
+}
+    fragment MediaCard on Media {
+  title {
+    romaji
+    english
+    native
+  }
+  coverImage {
+    extraLarge
+    large
+    medium
+  }
+  averageScore
+  description(asHtml: true)
+  status
+  id
+  genres
+  format
+  type
+}
+fragment PageInfoData on Page {
+  pageInfo {
+    total
+    perPage
+    currentPage
+    lastPage
+    hasNextPage
+  }
+}`) as unknown as TypedDocumentString<TrendingAnimeQuery, TrendingAnimeQueryVariables>;
+export const PopularAnimeDocument = new TypedDocumentString(`
+    query PopularAnime($page: Int, $perPage: Int) {
+  Page(page: $page, perPage: $perPage) {
+    media(sort: POPULARITY_DESC, type: ANIME) {
+      ...MediaCard
+    }
+    ...PageInfoData
+  }
+}
+    fragment MediaCard on Media {
+  title {
+    romaji
+    english
+    native
+  }
+  coverImage {
+    extraLarge
+    large
+    medium
+  }
+  averageScore
+  description(asHtml: true)
+  status
+  id
+  genres
+  format
+  type
+}
+fragment PageInfoData on Page {
+  pageInfo {
+    total
+    perPage
+    currentPage
+    lastPage
+    hasNextPage
+  }
+}`) as unknown as TypedDocumentString<PopularAnimeQuery, PopularAnimeQueryVariables>;
+export const PopularThisSeasonAnimeDocument = new TypedDocumentString(`
+    query PopularThisSeasonAnime($page: Int, $perPage: Int, $season: MediaSeason, $seasonYear: Int) {
+  Page(page: $page, perPage: $perPage) {
+    media(
+      sort: POPULARITY_DESC
+      type: ANIME
+      season: $season
+      seasonYear: $seasonYear
+    ) {
+      ...MediaCard
+    }
+    ...PageInfoData
+  }
+}
+    fragment MediaCard on Media {
+  title {
+    romaji
+    english
+    native
+  }
+  coverImage {
+    extraLarge
+    large
+    medium
+  }
+  averageScore
+  description(asHtml: true)
+  status
+  id
+  genres
+  format
+  type
+}
+fragment PageInfoData on Page {
+  pageInfo {
+    total
+    perPage
+    currentPage
+    lastPage
+    hasNextPage
+  }
+}`) as unknown as TypedDocumentString<PopularThisSeasonAnimeQuery, PopularThisSeasonAnimeQueryVariables>;
+export const UpcomingAnimeDocument = new TypedDocumentString(`
+    query UpcomingAnime($page: Int, $perPage: Int, $season: MediaSeason, $seasonYear: Int) {
+  Page(page: $page, perPage: $perPage) {
+    media(
+      sort: POPULARITY_DESC
+      type: ANIME
+      season: $season
+      seasonYear: $seasonYear
+    ) {
+      ...MediaCard
+    }
+    ...PageInfoData
+  }
+}
+    fragment MediaCard on Media {
+  title {
+    romaji
+    english
+    native
+  }
+  coverImage {
+    extraLarge
+    large
+    medium
+  }
+  averageScore
+  description(asHtml: true)
+  status
+  id
+  genres
+  format
+  type
+}
+fragment PageInfoData on Page {
+  pageInfo {
+    total
+    perPage
+    currentPage
+    lastPage
+    hasNextPage
+  }
+}`) as unknown as TypedDocumentString<UpcomingAnimeQuery, UpcomingAnimeQueryVariables>;
+export const TrendingAnimeBannerDocument = new TypedDocumentString(`
+    query TrendingAnimeBanner($page: Int, $perPage: Int) {
+  Page(page: $page, perPage: $perPage) {
+    media(sort: TRENDING_DESC, type: ANIME) {
+      ...MediaBanner
+    }
+    ...PageInfoData
+  }
+}
+    fragment MediaBanner on Media {
+  title {
+    romaji
+    english
+    native
+  }
+  bannerImage
+  id
+  genres
+  type
+}
+fragment PageInfoData on Page {
+  pageInfo {
+    total
+    perPage
+    currentPage
+    lastPage
+    hasNextPage
+  }
+}`) as unknown as TypedDocumentString<TrendingAnimeBannerQuery, TrendingAnimeBannerQueryVariables>;
+export const AnimeAllDocument = new TypedDocumentString(`
+    query AnimeAll($page: Int, $perPage: Int, $popularThisSeasonSeason: MediaSeason, $popularThisSeasonSeasonYear: Int, $upcomingSeason: MediaSeason, $upcomingSeasonYear: Int) {
+  trendingAnimeBanner: Page(page: $page, perPage: $perPage) {
+    media(sort: TRENDING_DESC, type: ANIME) {
+      ...MediaBanner
+    }
+    ...PageInfoData
+  }
+  trending: Page(page: $page, perPage: $perPage) {
+    media(sort: TRENDING_DESC, type: ANIME) {
+      ...MediaCard
+    }
+    ...PageInfoData
+  }
+  popular: Page(page: $page, perPage: $perPage) {
+    media(sort: POPULARITY_DESC, type: ANIME) {
+      ...MediaCard
+    }
+    ...PageInfoData
+  }
+  popularThisSeason: Page(page: $page, perPage: $perPage) {
+    media(
+      sort: POPULARITY_DESC
+      type: ANIME
+      season: $popularThisSeasonSeason
+      seasonYear: $popularThisSeasonSeasonYear
+    ) {
+      ...MediaCard
+    }
+    ...PageInfoData
+  }
+  upcoming: Page(page: $page, perPage: $perPage) {
+    media(
+      sort: POPULARITY_DESC
+      type: ANIME
+      season: $upcomingSeason
+      seasonYear: $upcomingSeasonYear
+    ) {
+      ...MediaCard
+    }
+    ...PageInfoData
+  }
+}
+    fragment MediaCard on Media {
+  title {
+    romaji
+    english
+    native
+  }
+  coverImage {
+    extraLarge
+    large
+    medium
+  }
+  averageScore
+  description(asHtml: true)
+  status
+  id
+  genres
+  format
+  type
+}
+fragment MediaBanner on Media {
+  title {
+    romaji
+    english
+    native
+  }
+  bannerImage
+  id
+  genres
+  type
+}
+fragment PageInfoData on Page {
+  pageInfo {
+    total
+    perPage
+    currentPage
+    lastPage
+    hasNextPage
+  }
+}`) as unknown as TypedDocumentString<AnimeAllQuery, AnimeAllQueryVariables>;
+export const TrendingMangaDocument = new TypedDocumentString(`
+    query TrendingManga($page: Int, $perPage: Int) {
+  Page(page: $page, perPage: $perPage) {
+    media(sort: TRENDING_DESC, type: MANGA) {
+      ...MediaCard
+    }
+    ...PageInfoData
+  }
+}
+    fragment MediaCard on Media {
+  title {
+    romaji
+    english
+    native
+  }
+  coverImage {
+    extraLarge
+    large
+    medium
+  }
+  averageScore
+  description(asHtml: true)
+  status
+  id
+  genres
+  format
+  type
+}
+fragment PageInfoData on Page {
+  pageInfo {
+    total
+    perPage
+    currentPage
+    lastPage
+    hasNextPage
+  }
+}`) as unknown as TypedDocumentString<TrendingMangaQuery, TrendingMangaQueryVariables>;
+export const PopularMangaDocument = new TypedDocumentString(`
+    query PopularManga($page: Int, $perPage: Int) {
+  Page(page: $page, perPage: $perPage) {
+    media(sort: POPULARITY_DESC, type: MANGA) {
+      ...MediaCard
+    }
+    ...PageInfoData
+  }
+}
+    fragment MediaCard on Media {
+  title {
+    romaji
+    english
+    native
+  }
+  coverImage {
+    extraLarge
+    large
+    medium
+  }
+  averageScore
+  description(asHtml: true)
+  status
+  id
+  genres
+  format
+  type
+}
+fragment PageInfoData on Page {
+  pageInfo {
+    total
+    perPage
+    currentPage
+    lastPage
+    hasNextPage
+  }
+}`) as unknown as TypedDocumentString<PopularMangaQuery, PopularMangaQueryVariables>;
+export const PopularManhwaDocument = new TypedDocumentString(`
+    query PopularManhwa($page: Int, $perPage: Int) {
+  Page(page: $page, perPage: $perPage) {
+    media(sort: POPULARITY_DESC, type: MANGA, countryOfOrigin: "KR") {
+      ...MediaCard
+    }
+    ...PageInfoData
+  }
+}
+    fragment MediaCard on Media {
+  title {
+    romaji
+    english
+    native
+  }
+  coverImage {
+    extraLarge
+    large
+    medium
+  }
+  averageScore
+  description(asHtml: true)
+  status
+  id
+  genres
+  format
+  type
+}
+fragment PageInfoData on Page {
+  pageInfo {
+    total
+    perPage
+    currentPage
+    lastPage
+    hasNextPage
+  }
+}`) as unknown as TypedDocumentString<PopularManhwaQuery, PopularManhwaQueryVariables>;
+export const TrendingMangaBannerDocument = new TypedDocumentString(`
+    query TrendingMangaBanner($page: Int, $perPage: Int) {
+  Page(page: $page, perPage: $perPage) {
+    media(sort: TRENDING_DESC, type: MANGA) {
+      ...MediaBanner
+    }
+    ...PageInfoData
+  }
+}
+    fragment MediaBanner on Media {
+  title {
+    romaji
+    english
+    native
+  }
+  bannerImage
+  id
+  genres
+  type
+}
+fragment PageInfoData on Page {
+  pageInfo {
+    total
+    perPage
+    currentPage
+    lastPage
+    hasNextPage
+  }
+}`) as unknown as TypedDocumentString<TrendingMangaBannerQuery, TrendingMangaBannerQueryVariables>;
+export const MangaAllDocument = new TypedDocumentString(`
+    query MangaAll($page: Int, $perPage: Int) {
+  trendingMangaBanner: Page(page: $page, perPage: $perPage) {
+    media(sort: TRENDING_DESC, type: MANGA) {
+      ...MediaBanner
+    }
+    ...PageInfoData
+  }
+  trending: Page(page: $page, perPage: $perPage) {
+    media(sort: TRENDING_DESC, type: MANGA) {
+      ...MediaCard
+    }
+    ...PageInfoData
+  }
+  popular: Page(page: $page, perPage: $perPage) {
+    media(sort: POPULARITY_DESC, type: MANGA) {
+      ...MediaCard
+    }
+    ...PageInfoData
+  }
+  popularManhwa: Page(page: $page, perPage: $perPage) {
+    media(sort: POPULARITY_DESC, countryOfOrigin: KR, type: MANGA) {
+      ...MediaCard
+    }
+    ...PageInfoData
+  }
+}
+    fragment MediaCard on Media {
+  title {
+    romaji
+    english
+    native
+  }
+  coverImage {
+    extraLarge
+    large
+    medium
+  }
+  averageScore
+  description(asHtml: true)
+  status
+  id
+  genres
+  format
+  type
+}
+fragment MediaBanner on Media {
+  title {
+    romaji
+    english
+    native
+  }
+  bannerImage
+  id
+  genres
+  type
+}
+fragment PageInfoData on Page {
+  pageInfo {
+    total
+    perPage
+    currentPage
+    lastPage
+    hasNextPage
+  }
+}`) as unknown as TypedDocumentString<MangaAllQuery, MangaAllQueryVariables>;
 export const MediaDetailQueryDocument = new TypedDocumentString(`
     query MediaDetailQuery($mediaId: Int, $voiceActorLanguage: StaffLanguage, $recommendationSort: [RecommendationSort], $staffSort: [StaffSort]) {
   Media(id: $mediaId) {
