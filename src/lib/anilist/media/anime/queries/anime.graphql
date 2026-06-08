@@ -1,0 +1,128 @@
+# ---------------------------------------------------- Card
+
+query TrendingAnime($page: Int, $perPage: Int) {
+	Page(page: $page, perPage: $perPage) {
+		media(sort: TRENDING_DESC, type: ANIME) {
+			...MediaCard
+		}
+		...PageInfoData
+	}
+}
+
+# ----------------------
+
+query PopularAnime($page: Int, $perPage: Int) {
+	Page(page: $page, perPage: $perPage) {
+		media(sort: POPULARITY_DESC, type: ANIME) {
+			...MediaCard
+		}
+		...PageInfoData
+	}
+}
+
+# ----------------------
+
+query PopularThisSeasonAnime(
+	$page: Int
+	$perPage: Int
+	$season: MediaSeason
+	$seasonYear: Int
+) {
+	Page(page: $page, perPage: $perPage) {
+		media(
+			sort: POPULARITY_DESC
+			type: ANIME
+			season: $season
+			seasonYear: $seasonYear
+		) {
+			...MediaCard
+		}
+		...PageInfoData
+	}
+}
+
+# ----------------------
+
+query UpcomingAnime(
+	$page: Int
+	$perPage: Int
+	$season: MediaSeason
+	$seasonYear: Int
+) {
+	Page(page: $page, perPage: $perPage) {
+		media(
+			sort: POPULARITY_DESC
+			type: ANIME
+			season: $season
+			seasonYear: $seasonYear
+		) {
+			...MediaCard
+		}
+		...PageInfoData
+	}
+}
+
+# -------------------------------------------------- Banner
+
+query TrendingAnimeBanner($page: Int, $perPage: Int) {
+	Page(page: $page, perPage: $perPage) {
+		media(sort: TRENDING_DESC, type: ANIME) {
+			...MediaBanner
+		}
+		...PageInfoData
+	}
+}
+
+# ----------------------------------------------------- All
+
+query AnimeAll(
+	$page: Int
+	$perPage: Int
+	$popularThisSeasonSeason: MediaSeason
+	$popularThisSeasonSeasonYear: Int
+	$upcomingSeason: MediaSeason
+	$upcomingSeasonYear: Int
+) {
+	trendingAnimeBanner: Page(page: $page, perPage: $perPage) {
+		media(sort: TRENDING_DESC, type: ANIME) {
+			...MediaBanner
+		}
+		...PageInfoData
+	}
+	trending: Page(page: $page, perPage: $perPage) {
+		media(sort: TRENDING_DESC, type: ANIME) {
+			...MediaCard
+		}
+		...PageInfoData
+	}
+	popular: Page(page: $page, perPage: $perPage) {
+		media(sort: POPULARITY_DESC, type: ANIME) {
+			...MediaCard
+		}
+		...PageInfoData
+	}
+	popularThisSeason: Page(page: $page, perPage: $perPage) {
+		media(
+			sort: POPULARITY_DESC
+			type: ANIME
+			season: $popularThisSeasonSeason
+			seasonYear: $popularThisSeasonSeasonYear
+		) {
+			...MediaCard
+		}
+		...PageInfoData
+	}
+	upcoming: Page(page: $page, perPage: $perPage) {
+		media(
+			sort: POPULARITY_DESC
+			type: ANIME
+			season: $upcomingSeason
+			seasonYear: $upcomingSeasonYear
+		) {
+			...MediaCard
+		}
+		...PageInfoData
+	}
+}
+
+# ---------------------------------------------------------
