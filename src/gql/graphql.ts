@@ -78,6 +78,46 @@ export type MediaSeason =
   /** Predominantly started airing between January and March */
   | 'WINTER';
 
+/** Media sort enums */
+export type MediaSort =
+  | 'CHAPTERS'
+  | 'CHAPTERS_DESC'
+  | 'DURATION'
+  | 'DURATION_DESC'
+  | 'END_DATE'
+  | 'END_DATE_DESC'
+  | 'EPISODES'
+  | 'EPISODES_DESC'
+  | 'FAVOURITES'
+  | 'FAVOURITES_DESC'
+  | 'FORMAT'
+  | 'FORMAT_DESC'
+  | 'ID'
+  | 'ID_DESC'
+  | 'POPULARITY'
+  | 'POPULARITY_DESC'
+  | 'SCORE'
+  | 'SCORE_DESC'
+  | 'SEARCH_MATCH'
+  | 'START_DATE'
+  | 'START_DATE_DESC'
+  | 'STATUS'
+  | 'STATUS_DESC'
+  | 'TITLE_ENGLISH'
+  | 'TITLE_ENGLISH_DESC'
+  | 'TITLE_NATIVE'
+  | 'TITLE_NATIVE_DESC'
+  | 'TITLE_ROMAJI'
+  | 'TITLE_ROMAJI_DESC'
+  | 'TRENDING'
+  | 'TRENDING_DESC'
+  | 'TYPE'
+  | 'TYPE_DESC'
+  | 'UPDATED_AT'
+  | 'UPDATED_AT_DESC'
+  | 'VOLUMES'
+  | 'VOLUMES_DESC';
+
 /** Source type the media was adapted from */
 export type MediaSource =
   /** Version 2+ only. Japanese Anime */
@@ -174,6 +214,44 @@ export type StaffSort =
   | 'ROLE'
   | 'ROLE_DESC'
   | 'SEARCH_MATCH';
+
+export type MostFavoritedCharactersQueryVariables = Exact<{
+  page?: number | null | undefined;
+  perPage?: number | null | undefined;
+}>;
+
+
+export type MostFavoritedCharactersQuery = { Page: { characters: Array<{ id: number, description: string | null, gender: string | null, age: string | null, name: { full: string | null, native: string | null } | null, image: { large: string | null, medium: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null };
+
+export type BirthdayCharactersQueryVariables = Exact<{
+  page?: number | null | undefined;
+  perPage?: number | null | undefined;
+}>;
+
+
+export type BirthdayCharactersQuery = { Page: { characters: Array<{ id: number, description: string | null, gender: string | null, age: string | null, name: { full: string | null, native: string | null } | null, image: { large: string | null, medium: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null };
+
+export type CharacterAllQueryVariables = Exact<{
+  page?: number | null | undefined;
+  perPage?: number | null | undefined;
+}>;
+
+
+export type CharacterAllQuery = { birthday: { characters: Array<{ id: number, description: string | null, gender: string | null, age: string | null, name: { full: string | null, native: string | null } | null, image: { large: string | null, medium: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null, mostFavorited: { characters: Array<{ id: number, description: string | null, gender: string | null, age: string | null, name: { full: string | null, native: string | null } | null, image: { large: string | null, medium: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null };
+
+export type CharacterDetailQueryQueryVariables = Exact<{
+  characterId?: number | null | undefined;
+  mediaSort?: Array<MediaSort | null | undefined> | MediaSort | null | undefined;
+  voiceActorsLanguage?: StaffLanguage | null | undefined;
+  voiceActorsSort?: Array<StaffSort | null | undefined> | StaffSort | null | undefined;
+}>;
+
+
+export type CharacterDetailQueryQuery = { Character: { id: number, description: string | null, gender: string | null, age: string | null, favourites: number | null, bloodType: string | null, siteUrl: string | null, name: { full: string | null, native: string | null, alternative: Array<string | null> | null, alternativeSpoiler: Array<string | null> | null } | null, image: { large: string | null, medium: string | null } | null, dateOfBirth: { day: number | null, month: number | null, year: number | null } | null, media: { edges: Array<{ id: number | null, node: { id: number, type: MediaType | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null, title: { english: string | null, native: string | null, romaji: string | null } | null } | null, voiceActors: Array<{ id: number, name: { full: string | null, native: string | null } | null, image: { large: string | null, medium: string | null } | null } | null> | null } | null> | null } | null } | null };
+
+export type CharacterCardFragment = { id: number, description: string | null, gender: string | null, age: string | null, name: { full: string | null, native: string | null } | null, image: { large: string | null, medium: string | null } | null };
+
+export type CharacterDetailFragment = { id: number, description: string | null, gender: string | null, age: string | null, favourites: number | null, bloodType: string | null, siteUrl: string | null, name: { full: string | null, native: string | null, alternative: Array<string | null> | null, alternativeSpoiler: Array<string | null> | null } | null, image: { large: string | null, medium: string | null } | null, dateOfBirth: { day: number | null, month: number | null, year: number | null } | null, media: { edges: Array<{ id: number | null, node: { id: number, type: MediaType | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null, title: { english: string | null, native: string | null, romaji: string | null } | null } | null, voiceActors: Array<{ id: number, name: { full: string | null, native: string | null } | null, image: { large: string | null, medium: string | null } | null } | null> | null } | null> | null } | null };
 
 export type TrendingAnimeQueryVariables = Exact<{
   page?: number | null | undefined;
@@ -315,6 +393,78 @@ export class TypedDocumentString<TResult, TVariables>
     return this.value;
   }
 }
+export const CharacterCardFragmentDoc = new TypedDocumentString(`
+    fragment CharacterCard on Character {
+  id
+  description(asHtml: true)
+  gender
+  age
+  name {
+    full
+    native
+  }
+  image {
+    large
+    medium
+  }
+}
+    `, {"fragmentName":"CharacterCard"}) as unknown as TypedDocumentString<CharacterCardFragment, unknown>;
+export const CharacterDetailFragmentDoc = new TypedDocumentString(`
+    fragment CharacterDetail on Character {
+  id
+  description(asHtml: true)
+  gender
+  age
+  favourites
+  bloodType
+  siteUrl
+  name {
+    full
+    native
+    alternative
+    alternativeSpoiler
+  }
+  image {
+    large
+    medium
+  }
+  dateOfBirth {
+    day
+    month
+    year
+  }
+  media(sort: $mediaSort) {
+    edges {
+      id
+      node {
+        id
+        type
+        coverImage {
+          extraLarge
+          large
+          medium
+        }
+        title {
+          english
+          native
+          romaji
+        }
+      }
+      voiceActors(language: $voiceActorsLanguage, sort: $voiceActorsSort) {
+        id
+        name {
+          full
+          native
+        }
+        image {
+          large
+          medium
+        }
+      }
+    }
+  }
+}
+    `, {"fragmentName":"CharacterDetail"}) as unknown as TypedDocumentString<CharacterDetailFragment, unknown>;
 export const MediaCardFragmentDoc = new TypedDocumentString(`
     fragment MediaCard on Media {
   title {
@@ -526,6 +676,168 @@ export const PageInfoDataFragmentDoc = new TypedDocumentString(`
   }
 }
     `, {"fragmentName":"PageInfoData"}) as unknown as TypedDocumentString<PageInfoDataFragment, unknown>;
+export const MostFavoritedCharactersDocument = new TypedDocumentString(`
+    query MostFavoritedCharacters($page: Int, $perPage: Int) {
+  Page(page: $page, perPage: $perPage) {
+    characters(sort: FAVOURITES_DESC) {
+      ...CharacterCard
+    }
+    ...PageInfoData
+  }
+}
+    fragment CharacterCard on Character {
+  id
+  description(asHtml: true)
+  gender
+  age
+  name {
+    full
+    native
+  }
+  image {
+    large
+    medium
+  }
+}
+fragment PageInfoData on Page {
+  pageInfo {
+    total
+    perPage
+    currentPage
+    lastPage
+    hasNextPage
+  }
+}`) as unknown as TypedDocumentString<MostFavoritedCharactersQuery, MostFavoritedCharactersQueryVariables>;
+export const BirthdayCharactersDocument = new TypedDocumentString(`
+    query BirthdayCharacters($page: Int, $perPage: Int) {
+  Page(page: $page, perPage: $perPage) {
+    characters(isBirthday: true, sort: FAVOURITES_DESC) {
+      ...CharacterCard
+    }
+    ...PageInfoData
+  }
+}
+    fragment CharacterCard on Character {
+  id
+  description(asHtml: true)
+  gender
+  age
+  name {
+    full
+    native
+  }
+  image {
+    large
+    medium
+  }
+}
+fragment PageInfoData on Page {
+  pageInfo {
+    total
+    perPage
+    currentPage
+    lastPage
+    hasNextPage
+  }
+}`) as unknown as TypedDocumentString<BirthdayCharactersQuery, BirthdayCharactersQueryVariables>;
+export const CharacterAllDocument = new TypedDocumentString(`
+    query CharacterAll($page: Int, $perPage: Int) {
+  birthday: Page(page: $page, perPage: $perPage) {
+    characters(isBirthday: true, sort: FAVOURITES_DESC) {
+      ...CharacterCard
+    }
+    ...PageInfoData
+  }
+  mostFavorited: Page(page: $page, perPage: $perPage) {
+    characters(sort: FAVOURITES_DESC) {
+      ...CharacterCard
+    }
+    ...PageInfoData
+  }
+}
+    fragment CharacterCard on Character {
+  id
+  description(asHtml: true)
+  gender
+  age
+  name {
+    full
+    native
+  }
+  image {
+    large
+    medium
+  }
+}
+fragment PageInfoData on Page {
+  pageInfo {
+    total
+    perPage
+    currentPage
+    lastPage
+    hasNextPage
+  }
+}`) as unknown as TypedDocumentString<CharacterAllQuery, CharacterAllQueryVariables>;
+export const CharacterDetailQueryDocument = new TypedDocumentString(`
+    query CharacterDetailQuery($characterId: Int, $mediaSort: [MediaSort], $voiceActorsLanguage: StaffLanguage, $voiceActorsSort: [StaffSort]) {
+  Character(id: $characterId) {
+    ...CharacterDetail
+  }
+}
+    fragment CharacterDetail on Character {
+  id
+  description(asHtml: true)
+  gender
+  age
+  favourites
+  bloodType
+  siteUrl
+  name {
+    full
+    native
+    alternative
+    alternativeSpoiler
+  }
+  image {
+    large
+    medium
+  }
+  dateOfBirth {
+    day
+    month
+    year
+  }
+  media(sort: $mediaSort) {
+    edges {
+      id
+      node {
+        id
+        type
+        coverImage {
+          extraLarge
+          large
+          medium
+        }
+        title {
+          english
+          native
+          romaji
+        }
+      }
+      voiceActors(language: $voiceActorsLanguage, sort: $voiceActorsSort) {
+        id
+        name {
+          full
+          native
+        }
+        image {
+          large
+          medium
+        }
+      }
+    }
+  }
+}`) as unknown as TypedDocumentString<CharacterDetailQueryQuery, CharacterDetailQueryQueryVariables>;
 export const TrendingAnimeDocument = new TypedDocumentString(`
     query TrendingAnime($page: Int, $perPage: Int) {
   Page(page: $page, perPage: $perPage) {
