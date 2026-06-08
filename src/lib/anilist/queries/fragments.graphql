@@ -1,0 +1,13 @@
+# ----------------------------------------------- Page Info
+
+fragment PageInfoData on Page {
+	pageInfo {
+		total
+		perPage
+		currentPage
+		lastPage
+		hasNextPage
+	}
+}
+
+# ---------------------------------------------------------
