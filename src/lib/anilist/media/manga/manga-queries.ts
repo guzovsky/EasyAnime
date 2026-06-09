@@ -8,7 +8,7 @@ import {
 	TrendingMangaBannerDocument,
 	TrendingMangaDocument,
 } from "@/gql/graphql";
-import type { RouteQueryConfig } from "../../queries/types";
+import type { QueryMap } from "../../queries/types";
 
 // --------------------------------------------------------
 
@@ -20,7 +20,7 @@ const MANGA_QUERY_MAP = {
 	},
 	popular: PopularMangaDocument,
 	popularManhwa: PopularManhwaDocument,
-} as const satisfies Record<MangaRouteKey, RouteQueryConfig>;
+} as const satisfies QueryMap<MangaRouteKey>;
 
 // --------------------------------------------------------
 

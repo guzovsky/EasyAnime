@@ -9,4 +9,11 @@ export type RouteQueryConfig =
 	| RouteQuery
 	| { card: RouteQuery; banner?: RouteQuery };
 
+// ---------------------
+
+export type QueryMap<RouteKey extends string> = Record<
+	RouteKey,
+	RouteQueryConfig
+>;
+
 // --------------------------------------------------------
