@@ -367,14 +367,6 @@ export type MediaDetailQueryQuery = { Media: { id: number, type: MediaType | nul
 
 export type PageInfoDataFragment = { pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null };
 
-export type TestQueryQueryVariables = Exact<{
-  page?: number | null | undefined;
-  perPage?: number | null | undefined;
-}>;
-
-
-export type TestQueryQuery = { Page: { media: Array<{ title: { romaji: string | null, english: string | null, native: string | null } | null } | null> | null } | null };
-
 export class TypedDocumentString<TResult, TVariables>
   extends String
   implements DocumentTypeDecoration<TResult, TVariables>
@@ -1483,16 +1475,3 @@ export const MediaDetailQueryDocument = new TypedDocumentString(`
     }
   }
 }`) as unknown as TypedDocumentString<MediaDetailQueryQuery, MediaDetailQueryQueryVariables>;
-export const TestQueryDocument = new TypedDocumentString(`
-    query TestQuery($page: Int, $perPage: Int) {
-  Page(page: $page, perPage: $perPage) {
-    media {
-      title {
-        romaji
-        english
-        native
-      }
-    }
-  }
-}
-    `) as unknown as TypedDocumentString<TestQueryQuery, TestQueryQueryVariables>;
