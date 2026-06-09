@@ -8,7 +8,7 @@ import {
 	TrendingMangaBannerDocument,
 	TrendingMangaDocument,
 } from "@/gql/graphql";
-import type { RouteQueryConfig } from "../types/route-query";
+import type { RouteQueryConfig } from "../../queries/types";
 
 // --------------------------------------------------------
 
