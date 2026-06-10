@@ -21,3 +21,8 @@ export type QueryMap<RouteKey extends string> = Record<
 >;
 
 // --------------------------------------------------------
+
+export type QueryVariables<T> =
+	T extends TypedDocumentString<unknown, infer V> ? V : never;
+
+// --------------------------------------------------------
