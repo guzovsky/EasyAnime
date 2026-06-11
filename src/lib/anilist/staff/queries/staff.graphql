@@ -1,0 +1,49 @@
+# ---------------------------------------------------- Card
+
+query MostFavoritedStaffs($page: Int, $perPage: Int) {
+	Page(page: $page, perPage: $perPage) {
+		staff(sort: FAVOURITES_DESC) {
+			...StaffCard
+		}
+		...PageInfoData
+	}
+}
+
+# ----------------------
+
+query BirthdayStaffs($page: Int, $perPage: Int) {
+	Page(page: $page, perPage: $perPage) {
+		staff(isBirthday: true, sort: FAVOURITES_DESC) {
+			...StaffCard
+		}
+		...PageInfoData
+	}
+}
+
+# ----------------------------------------------------- All
+
+query StaffAll($page: Int, $perPage: Int) {
+	birthday: Page(page: $page, perPage: $perPage) {
+		staff(isBirthday: true, sort: FAVOURITES_DESC) {
+			...StaffCard
+		}
+		...PageInfoData
+	}
+
+	mostFavorited: Page(page: $page, perPage: $perPage) {
+		staff(sort: FAVOURITES_DESC) {
+			...StaffCard
+		}
+		...PageInfoData
+	}
+}
+
+# -------------------------------------------------- Detail
+
+query StaffDetailQuery($staffId: Int, $characterMediaSort: [MediaSort]) {
+	Staff(id: $staffId) {
+		...StaffDetail
+	}
+}
+
+# ---------------------------------------------------------

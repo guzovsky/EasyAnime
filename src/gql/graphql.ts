@@ -371,6 +371,38 @@ export type StaffCardFragment = { age: number | null, description: string | null
 
 export type StaffDetailFragment = { age: number | null, id: number, description: string | null, homeTown: string | null, siteUrl: string | null, yearsActive: Array<number | null> | null, gender: string | null, primaryOccupations: Array<string | null> | null, name: { full: string | null, native: string | null, alternative: Array<string | null> | null } | null, image: { large: string | null, medium: string | null } | null, dateOfBirth: { day: number | null, month: number | null, year: number | null } | null, dateOfDeath: { day: number | null, month: number | null, year: number | null } | null, characterMedia: { edges: Array<{ id: number | null, node: { id: number, type: MediaType | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null, title: { english: string | null, native: string | null, romaji: string | null } | null } | null, characters: Array<{ id: number, name: { full: string | null, native: string | null } | null, image: { large: string | null, medium: string | null } | null } | null> | null } | null> | null } | null };
 
+export type MostFavoritedStaffsQueryVariables = Exact<{
+  page?: number | null | undefined;
+  perPage?: number | null | undefined;
+}>;
+
+
+export type MostFavoritedStaffsQuery = { Page: { staff: Array<{ age: number | null, description: string | null, gender: string | null, id: number, primaryOccupations: Array<string | null> | null, image: { large: string | null, medium: string | null } | null, name: { full: string | null, native: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null };
+
+export type BirthdayStaffsQueryVariables = Exact<{
+  page?: number | null | undefined;
+  perPage?: number | null | undefined;
+}>;
+
+
+export type BirthdayStaffsQuery = { Page: { staff: Array<{ age: number | null, description: string | null, gender: string | null, id: number, primaryOccupations: Array<string | null> | null, image: { large: string | null, medium: string | null } | null, name: { full: string | null, native: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null };
+
+export type StaffAllQueryVariables = Exact<{
+  page?: number | null | undefined;
+  perPage?: number | null | undefined;
+}>;
+
+
+export type StaffAllQuery = { birthday: { staff: Array<{ age: number | null, description: string | null, gender: string | null, id: number, primaryOccupations: Array<string | null> | null, image: { large: string | null, medium: string | null } | null, name: { full: string | null, native: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null, mostFavorited: { staff: Array<{ age: number | null, description: string | null, gender: string | null, id: number, primaryOccupations: Array<string | null> | null, image: { large: string | null, medium: string | null } | null, name: { full: string | null, native: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null };
+
+export type StaffDetailQueryQueryVariables = Exact<{
+  staffId?: number | null | undefined;
+  characterMediaSort?: Array<MediaSort | null | undefined> | MediaSort | null | undefined;
+}>;
+
+
+export type StaffDetailQueryQuery = { Staff: { age: number | null, id: number, description: string | null, homeTown: string | null, siteUrl: string | null, yearsActive: Array<number | null> | null, gender: string | null, primaryOccupations: Array<string | null> | null, name: { full: string | null, native: string | null, alternative: Array<string | null> | null } | null, image: { large: string | null, medium: string | null } | null, dateOfBirth: { day: number | null, month: number | null, year: number | null } | null, dateOfDeath: { day: number | null, month: number | null, year: number | null } | null, characterMedia: { edges: Array<{ id: number | null, node: { id: number, type: MediaType | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null, title: { english: string | null, native: string | null, romaji: string | null } | null } | null, characters: Array<{ id: number, name: { full: string | null, native: string | null } | null, image: { large: string | null, medium: string | null } | null } | null> | null } | null> | null } | null } | null };
+
 export class TypedDocumentString<TResult, TVariables>
   extends String
   implements DocumentTypeDecoration<TResult, TVariables>
@@ -1557,3 +1589,173 @@ export const MediaDetailQueryDocument = new TypedDocumentString(`
     }
   }
 }`) as unknown as TypedDocumentString<MediaDetailQueryQuery, MediaDetailQueryQueryVariables>;
+export const MostFavoritedStaffsDocument = new TypedDocumentString(`
+    query MostFavoritedStaffs($page: Int, $perPage: Int) {
+  Page(page: $page, perPage: $perPage) {
+    staff(sort: FAVOURITES_DESC) {
+      ...StaffCard
+    }
+    ...PageInfoData
+  }
+}
+    fragment PageInfoData on Page {
+  pageInfo {
+    total
+    perPage
+    currentPage
+    lastPage
+    hasNextPage
+  }
+}
+fragment StaffCard on Staff {
+  age
+  description(asHtml: true)
+  gender
+  id
+  primaryOccupations
+  image {
+    large
+    medium
+  }
+  name {
+    full
+    native
+  }
+}`) as unknown as TypedDocumentString<MostFavoritedStaffsQuery, MostFavoritedStaffsQueryVariables>;
+export const BirthdayStaffsDocument = new TypedDocumentString(`
+    query BirthdayStaffs($page: Int, $perPage: Int) {
+  Page(page: $page, perPage: $perPage) {
+    staff(isBirthday: true, sort: FAVOURITES_DESC) {
+      ...StaffCard
+    }
+    ...PageInfoData
+  }
+}
+    fragment PageInfoData on Page {
+  pageInfo {
+    total
+    perPage
+    currentPage
+    lastPage
+    hasNextPage
+  }
+}
+fragment StaffCard on Staff {
+  age
+  description(asHtml: true)
+  gender
+  id
+  primaryOccupations
+  image {
+    large
+    medium
+  }
+  name {
+    full
+    native
+  }
+}`) as unknown as TypedDocumentString<BirthdayStaffsQuery, BirthdayStaffsQueryVariables>;
+export const StaffAllDocument = new TypedDocumentString(`
+    query StaffAll($page: Int, $perPage: Int) {
+  birthday: Page(page: $page, perPage: $perPage) {
+    staff(isBirthday: true, sort: FAVOURITES_DESC) {
+      ...StaffCard
+    }
+    ...PageInfoData
+  }
+  mostFavorited: Page(page: $page, perPage: $perPage) {
+    staff(sort: FAVOURITES_DESC) {
+      ...StaffCard
+    }
+    ...PageInfoData
+  }
+}
+    fragment PageInfoData on Page {
+  pageInfo {
+    total
+    perPage
+    currentPage
+    lastPage
+    hasNextPage
+  }
+}
+fragment StaffCard on Staff {
+  age
+  description(asHtml: true)
+  gender
+  id
+  primaryOccupations
+  image {
+    large
+    medium
+  }
+  name {
+    full
+    native
+  }
+}`) as unknown as TypedDocumentString<StaffAllQuery, StaffAllQueryVariables>;
+export const StaffDetailQueryDocument = new TypedDocumentString(`
+    query StaffDetailQuery($staffId: Int, $characterMediaSort: [MediaSort]) {
+  Staff(id: $staffId) {
+    ...StaffDetail
+  }
+}
+    fragment StaffDetail on Staff {
+  age
+  id
+  description(asHtml: true)
+  homeTown
+  siteUrl
+  yearsActive
+  gender
+  primaryOccupations
+  name {
+    full
+    native
+    alternative
+  }
+  image {
+    large
+    medium
+  }
+  dateOfBirth {
+    day
+    month
+    year
+  }
+  dateOfDeath {
+    day
+    month
+    year
+  }
+  characterMedia(sort: $characterMediaSort) {
+    edges {
+      id
+      node {
+        id
+        type
+        coverImage {
+          extraLarge
+          large
+          medium
+        }
+        title {
+          english
+          native
+          romaji
+        }
+      }
+      characters {
+        id
+        name {
+          full
+          native
+        }
+        image {
+          large
+          medium
+        }
+      }
+    }
+  }
+}`) as unknown as TypedDocumentString<StaffDetailQueryQuery, StaffDetailQueryQueryVariables>;
