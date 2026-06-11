@@ -407,6 +407,44 @@ export type StudioCardFragment = { id: number, name: string, media: { nodes: Arr
 
 export type StudioDetailFragment = { id: number, name: string, siteUrl: string | null, isAnimationStudio: boolean, bannerMedia: { nodes: Array<{ id: number, bannerImage: string | null, title: { romaji: string | null, native: string | null, english: string | null } | null } | null> | null } | null, mainMedia: { nodes: Array<{ averageScore: number | null, description: string | null, status: MediaStatus | null, id: number, genres: Array<string | null> | null, format: MediaFormat | null, type: MediaType | null, title: { romaji: string | null, english: string | null, native: string | null } | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null };
 
+export type MostFavoritedStudiosQueryVariables = Exact<{
+  page?: number | null | undefined;
+  perPage?: number | null | undefined;
+  mediaSort?: Array<MediaSort | null | undefined> | MediaSort | null | undefined;
+  mediaIsMain?: boolean | null | undefined;
+  mediaPage?: number | null | undefined;
+  mediaPerPage?: number | null | undefined;
+}>;
+
+
+export type MostFavoritedStudiosQuery = { Page: { studios: Array<{ id: number, name: string, media: { nodes: Array<{ id: number, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null, title: { english: string | null, native: string | null, romaji: string | null } | null } | null> | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null };
+
+export type StudioAllQueryVariables = Exact<{
+  page?: number | null | undefined;
+  perPage?: number | null | undefined;
+  mediaSort?: Array<MediaSort | null | undefined> | MediaSort | null | undefined;
+  mediaIsMain?: boolean | null | undefined;
+  mediaPage?: number | null | undefined;
+  mediaPerPage?: number | null | undefined;
+}>;
+
+
+export type StudioAllQuery = { mostFavorited: { studios: Array<{ id: number, name: string, media: { nodes: Array<{ id: number, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null, title: { english: string | null, native: string | null, romaji: string | null } | null } | null> | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null };
+
+export type StudioDetailQueryQueryVariables = Exact<{
+  studioId?: number | null | undefined;
+  mediaSort?: Array<MediaSort | null | undefined> | MediaSort | null | undefined;
+  mediaPage?: number | null | undefined;
+  mediaPerPage?: number | null | undefined;
+  bannerMediaPage?: number | null | undefined;
+  bannerMediaPerPage?: number | null | undefined;
+  bannerMediaSort?: Array<MediaSort | null | undefined> | MediaSort | null | undefined;
+  bannerMediaIsMain?: boolean | null | undefined;
+}>;
+
+
+export type StudioDetailQueryQuery = { Studio: { id: number, name: string, siteUrl: string | null, isAnimationStudio: boolean, bannerMedia: { nodes: Array<{ id: number, bannerImage: string | null, title: { romaji: string | null, native: string | null, english: string | null } | null } | null> | null } | null, mainMedia: { nodes: Array<{ averageScore: number | null, description: string | null, status: MediaStatus | null, id: number, genres: Array<string | null> | null, format: MediaFormat | null, type: MediaType | null, title: { romaji: string | null, english: string | null, native: string | null } | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null } | null };
+
 export class TypedDocumentString<TResult, TVariables>
   extends String
   implements DocumentTypeDecoration<TResult, TVariables>
@@ -1843,3 +1881,146 @@ export const StaffDetailQueryDocument = new TypedDocumentString(`
     }
   }
 }`) as unknown as TypedDocumentString<StaffDetailQueryQuery, StaffDetailQueryQueryVariables>;
+export const MostFavoritedStudiosDocument = new TypedDocumentString(`
+    query MostFavoritedStudios($page: Int, $perPage: Int, $mediaSort: [MediaSort], $mediaIsMain: Boolean, $mediaPage: Int, $mediaPerPage: Int) {
+  Page(page: $page, perPage: $perPage) {
+    studios(sort: FAVOURITES_DESC) {
+      ...StudioCard
+    }
+    ...PageInfoData
+  }
+}
+    fragment PageInfoData on Page {
+  pageInfo {
+    total
+    perPage
+    currentPage
+    lastPage
+    hasNextPage
+  }
+}
+fragment StudioCard on Studio {
+  id
+  name
+  media(
+    sort: $mediaSort
+    isMain: $mediaIsMain
+    page: $mediaPage
+    perPage: $mediaPerPage
+  ) {
+    nodes {
+      id
+      coverImage {
+        extraLarge
+        large
+        medium
+      }
+      title {
+        english
+        native
+        romaji
+      }
+    }
+  }
+}`) as unknown as TypedDocumentString<MostFavoritedStudiosQuery, MostFavoritedStudiosQueryVariables>;
+export const StudioAllDocument = new TypedDocumentString(`
+    query StudioAll($page: Int, $perPage: Int, $mediaSort: [MediaSort], $mediaIsMain: Boolean, $mediaPage: Int, $mediaPerPage: Int) {
+  mostFavorited: Page(page: $page, perPage: $perPage) {
+    studios(sort: FAVOURITES_DESC) {
+      ...StudioCard
+    }
+    ...PageInfoData
+  }
+}
+    fragment PageInfoData on Page {
+  pageInfo {
+    total
+    perPage
+    currentPage
+    lastPage
+    hasNextPage
+  }
+}
+fragment StudioCard on Studio {
+  id
+  name
+  media(
+    sort: $mediaSort
+    isMain: $mediaIsMain
+    page: $mediaPage
+    perPage: $mediaPerPage
+  ) {
+    nodes {
+      id
+      coverImage {
+        extraLarge
+        large
+        medium
+      }
+      title {
+        english
+        native
+        romaji
+      }
+    }
+  }
+}`) as unknown as TypedDocumentString<StudioAllQuery, StudioAllQueryVariables>;
+export const StudioDetailQueryDocument = new TypedDocumentString(`
+    query StudioDetailQuery($studioId: Int, $mediaSort: [MediaSort], $mediaPage: Int, $mediaPerPage: Int, $bannerMediaPage: Int, $bannerMediaPerPage: Int, $bannerMediaSort: [MediaSort], $bannerMediaIsMain: Boolean) {
+  Studio(id: $studioId) {
+    ...StudioDetail
+  }
+}
+    fragment MediaCard on Media {
+  title {
+    romaji
+    english
+    native
+  }
+  coverImage {
+    extraLarge
+    large
+    medium
+  }
+  averageScore
+  description(asHtml: true)
+  status
+  id
+  genres
+  format
+  type
+}
+fragment StudioDetail on Studio {
+  id
+  name
+  siteUrl
+  isAnimationStudio
+  bannerMedia: media(
+    isMain: $bannerMediaIsMain
+    sort: $bannerMediaSort
+    page: $bannerMediaPage
+    perPage: $bannerMediaPerPage
+  ) {
+    nodes {
+      id
+      bannerImage
+      title {
+        romaji
+        native
+        english
+      }
+    }
+  }
+  mainMedia: media(sort: $mediaSort, page: $mediaPage, perPage: $mediaPerPage) {
+    nodes {
+      ...MediaCard
+    }
+    pageInfo {
+      total
+      perPage
+      currentPage
+      lastPage
+      hasNextPage
+    }
+  }
+}`) as unknown as TypedDocumentString<StudioDetailQueryQuery, StudioDetailQueryQueryVariables>;
