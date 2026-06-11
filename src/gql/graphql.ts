@@ -4,6 +4,18 @@ type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 /** Internal type. DO NOT USE DIRECTLY. */
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 import type { DocumentTypeDecoration } from '@graphql-typed-document-node/core';
+/** Character sort enums */
+export type CharacterSort =
+  | 'FAVOURITES'
+  | 'FAVOURITES_DESC'
+  | 'ID'
+  | 'ID_DESC'
+  /** Order manually decided by moderators */
+  | 'RELEVANCE'
+  | 'ROLE'
+  | 'ROLE_DESC'
+  | 'SEARCH_MATCH';
+
 export type ExternalLinkType =
   | 'INFO'
   | 'SOCIAL'
@@ -215,6 +227,16 @@ export type StaffSort =
   | 'ROLE_DESC'
   | 'SEARCH_MATCH';
 
+/** Studio sort enums */
+export type StudioSort =
+  | 'FAVOURITES'
+  | 'FAVOURITES_DESC'
+  | 'ID'
+  | 'ID_DESC'
+  | 'NAME'
+  | 'NAME_DESC'
+  | 'SEARCH_MATCH';
+
 export type MostFavoritedCharactersQueryVariables = Exact<{
   page?: number | null | undefined;
   perPage?: number | null | undefined;
@@ -351,6 +373,8 @@ export type MangaAllQuery = { trendingMangaBanner: { media: Array<{ bannerImage:
 
 export type MediaCardFragment = { averageScore: number | null, description: string | null, status: MediaStatus | null, id: number, genres: Array<string | null> | null, format: MediaFormat | null, type: MediaType | null, title: { romaji: string | null, english: string | null, native: string | null } | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null };
 
+export type MiniMediaCardFragment = { id: number, genres: Array<string | null> | null, title: { romaji: string | null, english: string | null, native: string | null } | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null };
+
 export type MediaBannerFragment = { bannerImage: string | null, id: number, genres: Array<string | null> | null, type: MediaType | null, title: { romaji: string | null, english: string | null, native: string | null } | null };
 
 export type MediaDetailFragment = { id: number, type: MediaType | null, synonyms: Array<string | null> | null, chapters: number | null, volumes: number | null, episodes: number | null, duration: number | null, averageScore: number | null, countryOfOrigin: unknown, bannerImage: string | null, hashtag: string | null, description: string | null, format: MediaFormat | null, genres: Array<string | null> | null, updatedAt: number | null, seasonYear: number | null, season: MediaSeason | null, source: MediaSource | null, siteUrl: string | null, status: MediaStatus | null, title: { english: string | null, romaji: string | null, native: string | null } | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null, externalLinks: Array<{ icon: string | null, id: number, type: ExternalLinkType | null, url: string | null, site: string, language: string | null, siteId: number | null } | null> | null, nextAiringEpisode: { airingAt: number, episode: number, id: number, timeUntilAiring: number } | null, rankings: Array<{ allTime: boolean | null, context: string, rank: number, type: MediaRankType, format: MediaFormat, id: number, season: MediaSeason | null, year: number | null } | null> | null, endDate: { year: number | null, month: number | null, day: number | null } | null, startDate: { year: number | null, month: number | null, day: number | null } | null, streamingEpisodes: Array<{ title: string | null, thumbnail: string | null, url: string | null, site: string | null } | null> | null, studios: { nodes: Array<{ id: number, name: string, siteUrl: string | null } | null> | null } | null, trailer: { id: string | null, site: string | null, thumbnail: string | null } | null, characters: { edges: Array<{ id: number | null, node: { id: number, image: { large: string | null, medium: string | null } | null, name: { full: string | null, native: string | null } | null } | null, voiceActors: Array<{ id: number, image: { large: string | null, medium: string | null } | null, name: { full: string | null, native: string | null } | null } | null> | null } | null> | null } | null, recommendations: { nodes: Array<{ id: number, mediaRecommendation: { id: number, title: { english: string | null, native: string | null, romaji: string | null } | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null } | null } | null> | null } | null, relations: { edges: Array<{ id: number | null, relationType: MediaRelation | null, node: { format: MediaFormat | null, type: MediaType | null, id: number, title: { english: string | null, native: string | null, romaji: string | null } | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null } | null } | null> | null } | null, staff: { nodes: Array<{ id: number, image: { large: string | null, medium: string | null } | null, name: { full: string | null, native: string | null } | null } | null> | null } | null };
@@ -366,6 +390,24 @@ export type MediaDetailQueryQueryVariables = Exact<{
 export type MediaDetailQueryQuery = { Media: { id: number, type: MediaType | null, synonyms: Array<string | null> | null, chapters: number | null, volumes: number | null, episodes: number | null, duration: number | null, averageScore: number | null, countryOfOrigin: unknown, bannerImage: string | null, hashtag: string | null, description: string | null, format: MediaFormat | null, genres: Array<string | null> | null, updatedAt: number | null, seasonYear: number | null, season: MediaSeason | null, source: MediaSource | null, siteUrl: string | null, status: MediaStatus | null, title: { english: string | null, romaji: string | null, native: string | null } | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null, externalLinks: Array<{ icon: string | null, id: number, type: ExternalLinkType | null, url: string | null, site: string, language: string | null, siteId: number | null } | null> | null, nextAiringEpisode: { airingAt: number, episode: number, id: number, timeUntilAiring: number } | null, rankings: Array<{ allTime: boolean | null, context: string, rank: number, type: MediaRankType, format: MediaFormat, id: number, season: MediaSeason | null, year: number | null } | null> | null, endDate: { year: number | null, month: number | null, day: number | null } | null, startDate: { year: number | null, month: number | null, day: number | null } | null, streamingEpisodes: Array<{ title: string | null, thumbnail: string | null, url: string | null, site: string | null } | null> | null, studios: { nodes: Array<{ id: number, name: string, siteUrl: string | null } | null> | null } | null, trailer: { id: string | null, site: string | null, thumbnail: string | null } | null, characters: { edges: Array<{ id: number | null, node: { id: number, image: { large: string | null, medium: string | null } | null, name: { full: string | null, native: string | null } | null } | null, voiceActors: Array<{ id: number, image: { large: string | null, medium: string | null } | null, name: { full: string | null, native: string | null } | null } | null> | null } | null> | null } | null, recommendations: { nodes: Array<{ id: number, mediaRecommendation: { id: number, title: { english: string | null, native: string | null, romaji: string | null } | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null } | null } | null> | null } | null, relations: { edges: Array<{ id: number | null, relationType: MediaRelation | null, node: { format: MediaFormat | null, type: MediaType | null, id: number, title: { english: string | null, native: string | null, romaji: string | null } | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null } | null } | null> | null } | null, staff: { nodes: Array<{ id: number, image: { large: string | null, medium: string | null } | null, name: { full: string | null, native: string | null } | null } | null> | null } | null } | null };
 
 export type PageInfoDataFragment = { pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null };
+
+export type QuickSearchQueryVariables = Exact<{
+  search?: string | null | undefined;
+  page?: number | null | undefined;
+  perPage?: number | null | undefined;
+  animeSort?: Array<MediaSort | null | undefined> | MediaSort | null | undefined;
+  mangaSort?: Array<MediaSort | null | undefined> | MediaSort | null | undefined;
+  characterSort?: Array<CharacterSort | null | undefined> | CharacterSort | null | undefined;
+  staffSort?: Array<StaffSort | null | undefined> | StaffSort | null | undefined;
+  studioSort?: Array<StudioSort | null | undefined> | StudioSort | null | undefined;
+  studiosMediaSort?: Array<MediaSort | null | undefined> | MediaSort | null | undefined;
+  studiosMediaPage?: number | null | undefined;
+  studiosMediaPerPage?: number | null | undefined;
+  studiosMediaIsMain?: boolean | null | undefined;
+}>;
+
+
+export type QuickSearchQuery = { anime: { media: Array<{ id: number, genres: Array<string | null> | null, title: { romaji: string | null, english: string | null, native: string | null } | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null } | null> | null } | null, manga: { media: Array<{ id: number, genres: Array<string | null> | null, title: { romaji: string | null, english: string | null, native: string | null } | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null } | null> | null } | null, character: { characters: Array<{ id: number, gender: string | null, name: { full: string | null, native: string | null } | null, image: { large: string | null, medium: string | null } | null } | null> | null } | null, staff: { staff: Array<{ id: number, primaryOccupations: Array<string | null> | null, image: { large: string | null, medium: string | null } | null, name: { full: string | null, native: string | null } | null } | null> | null } | null, studio: { studios: Array<{ id: number, name: string, isAnimationStudio: boolean, media: { edges: Array<{ id: number | null, node: { id: number, type: MediaType | null, title: { romaji: string | null, english: string | null, native: string | null } | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null } | null } | null> | null } | null } | null> | null } | null };
 
 export type StaffCardFragment = { age: number | null, description: string | null, gender: string | null, id: number, primaryOccupations: Array<string | null> | null, image: { large: string | null, medium: string | null } | null, name: { full: string | null, native: string | null } | null };
 
@@ -535,6 +577,22 @@ export const CharacterDetailFragmentDoc = new TypedDocumentString(`
   }
 }
     `, {"fragmentName":"CharacterDetail"}) as unknown as TypedDocumentString<CharacterDetailFragment, unknown>;
+export const MiniMediaCardFragmentDoc = new TypedDocumentString(`
+    fragment MiniMediaCard on Media {
+  id
+  genres
+  title {
+    romaji
+    english
+    native
+  }
+  coverImage {
+    extraLarge
+    large
+    medium
+  }
+}
+    `, {"fragmentName":"MiniMediaCard"}) as unknown as TypedDocumentString<MiniMediaCardFragment, unknown>;
 export const MediaBannerFragmentDoc = new TypedDocumentString(`
     fragment MediaBanner on Media {
   title {
@@ -1711,6 +1769,92 @@ export const MediaDetailQueryDocument = new TypedDocumentString(`
     }
   }
 }`) as unknown as TypedDocumentString<MediaDetailQueryQuery, MediaDetailQueryQueryVariables>;
+export const QuickSearchDocument = new TypedDocumentString(`
+    query QuickSearch($search: String, $page: Int, $perPage: Int, $animeSort: [MediaSort], $mangaSort: [MediaSort], $characterSort: [CharacterSort], $staffSort: [StaffSort], $studioSort: [StudioSort], $studiosMediaSort: [MediaSort], $studiosMediaPage: Int, $studiosMediaPerPage: Int, $studiosMediaIsMain: Boolean) {
+  anime: Page(page: $page, perPage: $perPage) {
+    media(search: $search, type: ANIME, sort: $animeSort) {
+      ...MiniMediaCard
+    }
+  }
+  manga: Page(page: $page, perPage: $perPage) {
+    media(search: $search, type: MANGA, sort: $mangaSort) {
+      ...MiniMediaCard
+    }
+  }
+  character: Page(page: $page, perPage: $perPage) {
+    characters(search: $search, sort: $characterSort) {
+      id
+      gender
+      name {
+        full
+        native
+      }
+      image {
+        large
+        medium
+      }
+    }
+  }
+  staff: Page(page: $page, perPage: $perPage) {
+    staff(search: $search, sort: $staffSort) {
+      id
+      primaryOccupations
+      image {
+        large
+        medium
+      }
+      name {
+        full
+        native
+      }
+    }
+  }
+  studio: Page(page: $page, perPage: $perPage) {
+    studios(search: $search, sort: $studioSort) {
+      id
+      name
+      isAnimationStudio
+      media(
+        isMain: $studiosMediaIsMain
+        sort: $studiosMediaSort
+        page: $studiosMediaPage
+        perPage: $studiosMediaPerPage
+      ) {
+        edges {
+          id
+          node {
+            id
+            type
+            title {
+              romaji
+              english
+              native
+            }
+            coverImage {
+              extraLarge
+              large
+              medium
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    fragment MiniMediaCard on Media {
+  id
+  genres
+  title {
+    romaji
+    english
+    native
+  }
+  coverImage {
+    extraLarge
+    large
+    medium
+  }
+}`) as unknown as TypedDocumentString<QuickSearchQuery, QuickSearchQueryVariables>;
 export const MostFavoritedStaffsDocument = new TypedDocumentString(`
     query MostFavoritedStaffs($page: Int, $perPage: Int) {
   Page(page: $page, perPage: $perPage) {

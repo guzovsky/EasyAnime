@@ -1,0 +1,88 @@
+query QuickSearch(
+	$search: String
+	$page: Int
+	$perPage: Int
+	$animeSort: [MediaSort]
+	$mangaSort: [MediaSort]
+	$characterSort: [CharacterSort]
+	$staffSort: [StaffSort]
+	$studioSort: [StudioSort]
+	$studiosMediaSort: [MediaSort]
+	$studiosMediaPage: Int
+	$studiosMediaPerPage: Int
+	$studiosMediaIsMain: Boolean
+) {
+	anime: Page(page: $page, perPage: $perPage) {
+		media(search: $search, type: ANIME, sort: $animeSort) {
+			...MiniMediaCard
+		}
+	}
+
+	manga: Page(page: $page, perPage: $perPage) {
+		media(search: $search, type: MANGA, sort: $mangaSort) {
+			...MiniMediaCard
+		}
+	}
+
+	character: Page(page: $page, perPage: $perPage) {
+		characters(search: $search, sort: $characterSort) {
+			id
+			gender
+			name {
+				full
+				native
+			}
+			image {
+				large
+				medium
+			}
+		}
+	}
+
+	staff: Page(page: $page, perPage: $perPage) {
+		staff(search: $search, sort: $staffSort) {
+			id
+			primaryOccupations
+			image {
+				large
+				medium
+			}
+			name {
+				full
+				native
+			}
+		}
+	}
+
+	studio: Page(page: $page, perPage: $perPage) {
+		studios(search: $search, sort: $studioSort) {
+			id
+			name
+			isAnimationStudio
+			media(
+				isMain: $studiosMediaIsMain
+				sort: $studiosMediaSort
+				page: $studiosMediaPage
+				perPage: $studiosMediaPerPage
+			) {
+				edges {
+					id
+					node {
+						id
+						type
+						title {
+							romaji
+							english
+							native
+						}
+						coverImage {
+							extraLarge
+							large
+							medium
+						}
+					}
+				}
+			}
+		}
+	}
+}

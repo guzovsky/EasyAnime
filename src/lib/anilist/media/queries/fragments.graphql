@@ -20,6 +20,21 @@ fragment MediaCard on Media {
 	type
 }
 
+fragment MiniMediaCard on Media {
+	id
+	genres
+	title {
+		romaji
+		english
+		native
+	}
+	coverImage {
+		extraLarge
+		large
+		medium
+	}
+}
+
 # -------------------------------------------------- Banner
 
 fragment MediaBanner on Media {
