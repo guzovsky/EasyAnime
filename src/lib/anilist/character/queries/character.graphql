@@ -1,0 +1,54 @@
+# ---------------------------------------------------- Card
+
+query MostFavoritedCharacters($page: Int, $perPage: Int) {
+	Page(page: $page, perPage: $perPage) {
+		characters(sort: FAVOURITES_DESC) {
+			...CharacterCard
+		}
+		...PageInfoData
+	}
+}
+
+# ----------------------
+
+query BirthdayCharacters($page: Int, $perPage: Int) {
+	Page(page: $page, perPage: $perPage) {
+		characters(isBirthday: true, sort: FAVOURITES_DESC) {
+			...CharacterCard
+		}
+		...PageInfoData
+	}
+}
+
+# ----------------------------------------------------- All
+
+query CharacterAll($page: Int, $perPage: Int) {
+	birthday: Page(page: $page, perPage: $perPage) {
+		characters(isBirthday: true, sort: FAVOURITES_DESC) {
+			...CharacterCard
+		}
+		...PageInfoData
+	}
+
+	mostFavorited: Page(page: $page, perPage: $perPage) {
+		characters(sort: FAVOURITES_DESC) {
+			...CharacterCard
+		}
+		...PageInfoData
+	}
+}
+
+# -------------------------------------------------- Detail
+
+query CharacterDetailQuery(
+	$characterId: Int
+	$mediaSort: [MediaSort]
+	$voiceActorsLanguage: StaffLanguage
+	$voiceActorsSort: [StaffSort]
+) {
+	Character(id: $characterId) {
+		...CharacterDetail
+	}
+}
+
+# ---------------------------------------------------------

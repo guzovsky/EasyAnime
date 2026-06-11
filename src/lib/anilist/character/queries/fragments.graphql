@@ -1,0 +1,78 @@
+# ---------------------------------------------------- Card
+
+fragment CharacterCard on Character {
+	id
+	description(asHtml: true)
+	gender
+	age
+	name {
+		full
+		native
+	}
+	image {
+		large
+		medium
+	}
+}
+
+# -------------------------------------------------- Detail
+
+fragment CharacterDetail on Character {
+	id
+	description(asHtml: true)
+	gender
+	age
+	favourites
+	bloodType
+	siteUrl
+	name {
+		full
+		native
+		alternative
+		alternativeSpoiler
+	}
+	image {
+		large
+		medium
+	}
+	dateOfBirth {
+		day
+		month
+		year
+	}
+	media(sort: $mediaSort) {
+		edges {
+			id
+			node {
+				id
+				type
+				coverImage {
+					extraLarge
+					large
+					medium
+				}
+				title {
+					english
+					native
+					romaji
+				}
+			}
+			voiceActors(
+				language: $voiceActorsLanguage
+				sort: $voiceActorsSort
+			) {
+				id
+				name {
+					full
+					native
+				}
+				image {
+					large
+					medium
+				}
+			}
+		}
+	}
+}
+
+# ---------------------------------------------------------

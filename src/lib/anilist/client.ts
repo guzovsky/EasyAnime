@@ -2,7 +2,8 @@
 
 import type { TypedDocumentString } from "@/gql/graphql";
 import { ANILIST_ERRORS, ANILIST_GRAPHQL_URL } from "./constants";
-import type { AniListGraphQLError, AniListGraphQLResponse } from "./types";
+import type { AniListGraphQLError } from "./types/errors";
+import type { AniListGraphQLResponse } from "./types/response";
 
 // -------------------------------------------------- Error
 

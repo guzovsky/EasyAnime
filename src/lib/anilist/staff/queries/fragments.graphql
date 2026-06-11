@@ -1,0 +1,81 @@
+# ---------------------------------------------------- Card
+
+fragment StaffCard on Staff {
+	age
+	description(asHtml: true)
+	gender
+	id
+	primaryOccupations
+	image {
+		large
+		medium
+	}
+	name {
+		full
+		native
+	}
+}
+
+# -------------------------------------------------- Detail
+
+fragment StaffDetail on Staff {
+	age
+	id
+	description(asHtml: true)
+	homeTown
+	siteUrl
+	yearsActive
+	gender
+	primaryOccupations
+	name {
+		full
+		native
+		alternative
+	}
+	image {
+		large
+		medium
+	}
+	dateOfBirth {
+		day
+		month
+		year
+	}
+	dateOfDeath {
+		day
+		month
+		year
+	}
+	characterMedia(sort: $characterMediaSort) {
+		edges {
+			id
+			node {
+				id
+				type
+				coverImage {
+					extraLarge
+					large
+					medium
+				}
+				title {
+					english
+					native
+					romaji
+				}
+			}
+			characters {
+				id
+				name {
+					full
+					native
+				}
+				image {
+					large
+					medium
+				}
+			}
+		}
+	}
+}
+
+# ---------------------------------------------------------

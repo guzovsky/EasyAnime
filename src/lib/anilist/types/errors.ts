@@ -1,4 +1,4 @@
-// ------------------------------------------------------- Error
+// -------------------------------------------------------------
 
 export interface AniListErrorLocation {
 	column: number;
@@ -10,12 +10,5 @@ export interface AniListGraphQLError {
 	message: string;
 	status?: number | null;
 }
-
-// ---------------------------------------------------- Response
-
-export type AniListGraphQLResponse<TData> = {
-	data?: TData | null;
-	errors?: AniListGraphQLError[] | null;
-} | null;
 
 // -------------------------------------------------------------

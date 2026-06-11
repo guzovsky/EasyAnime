@@ -1,0 +1,71 @@
+# ---------------------------------------------------- Card
+
+fragment StudioCard on Studio {
+	id
+	name
+	media(
+		sort: $mediaSort
+		isMain: $mediaIsMain
+		page: $mediaPage
+		perPage: $mediaPerPage
+	) {
+		nodes {
+			id
+			coverImage {
+				extraLarge
+				large
+				medium
+			}
+			title {
+				english
+				native
+				romaji
+			}
+		}
+	}
+}
+
+# -------------------------------------------------- Detail
+
+fragment StudioDetail on Studio {
+	id
+	name
+	siteUrl
+	isAnimationStudio
+
+	bannerMedia: media(
+		isMain: $bannerMediaIsMain
+		sort: $bannerMediaSort
+		page: $bannerMediaPage
+		perPage: $bannerMediaPerPage
+	) {
+		nodes {
+			id
+			bannerImage
+			title {
+				romaji
+				native
+				english
+			}
+		}
+	}
+
+	mainMedia: media(
+		sort: $mediaSort
+		page: $mediaPage
+		perPage: $mediaPerPage
+	) {
+		nodes {
+			...MediaCard
+		}
+		pageInfo {
+			total
+			perPage
+			currentPage
+			lastPage
+			hasNextPage
+		}
+	}
+}
+
+# ---------------------------------------------------------

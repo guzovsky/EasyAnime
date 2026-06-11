@@ -1,0 +1,54 @@
+# ---------------------------------------------------- Card
+
+query MostFavoritedStudios(
+	$page: Int
+	$perPage: Int
+	$mediaSort: [MediaSort]
+	$mediaIsMain: Boolean
+	$mediaPage: Int
+	$mediaPerPage: Int
+) {
+	Page(page: $page, perPage: $perPage) {
+		studios(sort: FAVOURITES_DESC) {
+			...StudioCard
+		}
+		...PageInfoData
+	}
+}
+
+# ----------------------------------------------------- All
+
+query StudioAll(
+	$page: Int
+	$perPage: Int
+	$mediaSort: [MediaSort]
+	$mediaIsMain: Boolean
+	$mediaPage: Int
+	$mediaPerPage: Int
+) {
+	mostFavorited: Page(page: $page, perPage: $perPage) {
+		studios(sort: FAVOURITES_DESC) {
+			...StudioCard
+		}
+		...PageInfoData
+	}
+}
+
+# -------------------------------------------------- Detail
+
+query StudioDetailQuery(
+	$studioId: Int
+	$mediaSort: [MediaSort]
+	$mediaPage: Int
+	$mediaPerPage: Int
+	$bannerMediaPage: Int
+	$bannerMediaPerPage: Int
+	$bannerMediaSort: [MediaSort]
+	$bannerMediaIsMain: Boolean
+) {
+	Studio(id: $studioId) {
+		...StudioDetail
+	}
+}
+
+# ---------------------------------------------------------

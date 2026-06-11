@@ -1,0 +1,219 @@
+# ---------------------------------------------------- Card
+
+fragment MediaCard on Media {
+	title {
+		romaji
+		english
+		native
+	}
+	coverImage {
+		extraLarge
+		large
+		medium
+	}
+	averageScore
+	description(asHtml: true)
+	status
+	id
+	genres
+	format
+	type
+}
+
+fragment MiniMediaCard on Media {
+	id
+	genres
+	title {
+		romaji
+		english
+		native
+	}
+	coverImage {
+		extraLarge
+		large
+		medium
+	}
+}
+
+# -------------------------------------------------- Banner
+
+fragment MediaBanner on Media {
+	title {
+		romaji
+		english
+		native
+	}
+	bannerImage
+	id
+	genres
+	type
+}
+
+# -------------------------------------------------- Detail
+
+fragment MediaDetail on Media {
+	id
+	type
+	synonyms
+	title {
+		english
+		romaji
+		native
+	}
+	chapters
+	volumes
+	episodes
+	duration
+	averageScore
+	countryOfOrigin
+	bannerImage
+	hashtag
+	coverImage {
+		extraLarge
+		large
+		medium
+	}
+	description(asHtml: true)
+	externalLinks {
+		icon
+		id
+		type
+		url
+		site
+		language
+		siteId
+	}
+	format
+	genres
+	nextAiringEpisode {
+		airingAt
+		episode
+		id
+		timeUntilAiring
+	}
+	rankings {
+		allTime
+		context
+		rank
+		type
+		format
+		id
+		season
+		year
+	}
+	endDate {
+		year
+		month
+		day
+	}
+	updatedAt
+	seasonYear
+	season
+	startDate {
+		year
+		month
+		day
+	}
+	source
+	siteUrl
+	status
+	streamingEpisodes {
+		title
+		thumbnail
+		url
+		site
+	}
+	studios {
+		nodes {
+			id
+			name
+			siteUrl
+		}
+	}
+	trailer {
+		id
+		site
+		thumbnail
+	}
+	characters {
+		edges {
+			id
+			node {
+				id
+				image {
+					large
+					medium
+				}
+				name {
+					full
+					native
+				}
+			}
+			voiceActors(language: $voiceActorLanguage) {
+				id
+				image {
+					large
+					medium
+				}
+				name {
+					full
+					native
+				}
+			}
+		}
+	}
+	recommendations(sort: $recommendationSort) {
+		nodes {
+			id
+			mediaRecommendation {
+				id
+				title {
+					english
+					native
+					romaji
+				}
+				coverImage {
+					extraLarge
+					large
+					medium
+				}
+			}
+		}
+	}
+	relations {
+		edges {
+			id
+			relationType
+			node {
+				format
+				type
+				id
+				title {
+					english
+					native
+					romaji
+				}
+				coverImage {
+					extraLarge
+					large
+					medium
+				}
+			}
+		}
+	}
+	staff(sort: $staffSort) {
+		nodes {
+			id
+			image {
+				large
+				medium
+			}
+			name {
+				full
+				native
+			}
+		}
+	}
+}
+
+# ---------------------------------------------------------

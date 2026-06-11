@@ -1,0 +1,74 @@
+# ---------------------------------------------------- Card
+
+query TrendingManga($page: Int, $perPage: Int) {
+	Page(page: $page, perPage: $perPage) {
+		media(sort: TRENDING_DESC, type: MANGA) {
+			...MediaCard
+		}
+		...PageInfoData
+	}
+}
+
+# ----------------------
+
+query PopularManga($page: Int, $perPage: Int) {
+	Page(page: $page, perPage: $perPage) {
+		media(sort: POPULARITY_DESC, type: MANGA) {
+			...MediaCard
+		}
+		...PageInfoData
+	}
+}
+
+# ----------------------
+
+query PopularManhwa($page: Int, $perPage: Int) {
+	Page(page: $page, perPage: $perPage) {
+		media(sort: POPULARITY_DESC, type: MANGA, countryOfOrigin: "KR") {
+			...MediaCard
+		}
+		...PageInfoData
+	}
+}
+
+# -------------------------------------------------- Banner
+
+query TrendingMangaBanner($page: Int, $perPage: Int) {
+	Page(page: $page, perPage: $perPage) {
+		media(sort: TRENDING_DESC, type: MANGA) {
+			...MediaBanner
+		}
+		...PageInfoData
+	}
+}
+
+# ----------------------------------------------------- All
+
+query MangaAll($page: Int, $perPage: Int) {
+	trendingMangaBanner: Page(page: $page, perPage: $perPage) {
+		media(sort: TRENDING_DESC, type: MANGA) {
+			...MediaBanner
+		}
+		...PageInfoData
+	}
+	trending: Page(page: $page, perPage: $perPage) {
+		media(sort: TRENDING_DESC, type: MANGA) {
+			...MediaCard
+		}
+		...PageInfoData
+	}
+	popular: Page(page: $page, perPage: $perPage) {
+		media(sort: POPULARITY_DESC, type: MANGA) {
+			...MediaCard
+		}
+		...PageInfoData
+	}
+	popularManhwa: Page(page: $page, perPage: $perPage) {
+		media(sort: POPULARITY_DESC, countryOfOrigin: KR, type: MANGA) {
+			...MediaCard
+		}
+		...PageInfoData
+	}
+}
+
+# ---------------------------------------------------------
