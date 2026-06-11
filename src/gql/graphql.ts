@@ -403,6 +403,10 @@ export type StaffDetailQueryQueryVariables = Exact<{
 
 export type StaffDetailQueryQuery = { Staff: { age: number | null, id: number, description: string | null, homeTown: string | null, siteUrl: string | null, yearsActive: Array<number | null> | null, gender: string | null, primaryOccupations: Array<string | null> | null, name: { full: string | null, native: string | null, alternative: Array<string | null> | null } | null, image: { large: string | null, medium: string | null } | null, dateOfBirth: { day: number | null, month: number | null, year: number | null } | null, dateOfDeath: { day: number | null, month: number | null, year: number | null } | null, characterMedia: { edges: Array<{ id: number | null, node: { id: number, type: MediaType | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null, title: { english: string | null, native: string | null, romaji: string | null } | null } | null, characters: Array<{ id: number, name: { full: string | null, native: string | null } | null, image: { large: string | null, medium: string | null } | null } | null> | null } | null> | null } | null } | null };
 
+export type StudioCardFragment = { id: number, name: string, media: { nodes: Array<{ id: number, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null, title: { english: string | null, native: string | null, romaji: string | null } | null } | null> | null } | null };
+
+export type StudioDetailFragment = { id: number, name: string, siteUrl: string | null, isAnimationStudio: boolean, bannerMedia: { nodes: Array<{ id: number, bannerImage: string | null, title: { romaji: string | null, native: string | null, english: string | null } | null } | null> | null } | null, mainMedia: { nodes: Array<{ averageScore: number | null, description: string | null, status: MediaStatus | null, id: number, genres: Array<string | null> | null, format: MediaFormat | null, type: MediaType | null, title: { romaji: string | null, english: string | null, native: string | null } | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null };
+
 export class TypedDocumentString<TResult, TVariables>
   extends String
   implements DocumentTypeDecoration<TResult, TVariables>
@@ -493,27 +497,6 @@ export const CharacterDetailFragmentDoc = new TypedDocumentString(`
   }
 }
     `, {"fragmentName":"CharacterDetail"}) as unknown as TypedDocumentString<CharacterDetailFragment, unknown>;
-export const MediaCardFragmentDoc = new TypedDocumentString(`
-    fragment MediaCard on Media {
-  title {
-    romaji
-    english
-    native
-  }
-  coverImage {
-    extraLarge
-    large
-    medium
-  }
-  averageScore
-  description(asHtml: true)
-  status
-  id
-  genres
-  format
-  type
-}
-    `, {"fragmentName":"MediaCard"}) as unknown as TypedDocumentString<MediaCardFragment, unknown>;
 export const MediaBannerFragmentDoc = new TypedDocumentString(`
     fragment MediaBanner on Media {
   title {
@@ -782,6 +765,107 @@ export const StaffDetailFragmentDoc = new TypedDocumentString(`
   }
 }
     `, {"fragmentName":"StaffDetail"}) as unknown as TypedDocumentString<StaffDetailFragment, unknown>;
+export const StudioCardFragmentDoc = new TypedDocumentString(`
+    fragment StudioCard on Studio {
+  id
+  name
+  media(
+    sort: $mediaSort
+    isMain: $mediaIsMain
+    page: $mediaPage
+    perPage: $mediaPerPage
+  ) {
+    nodes {
+      id
+      coverImage {
+        extraLarge
+        large
+        medium
+      }
+      title {
+        english
+        native
+        romaji
+      }
+    }
+  }
+}
+    `, {"fragmentName":"StudioCard"}) as unknown as TypedDocumentString<StudioCardFragment, unknown>;
+export const MediaCardFragmentDoc = new TypedDocumentString(`
+    fragment MediaCard on Media {
+  title {
+    romaji
+    english
+    native
+  }
+  coverImage {
+    extraLarge
+    large
+    medium
+  }
+  averageScore
+  description(asHtml: true)
+  status
+  id
+  genres
+  format
+  type
+}
+    `, {"fragmentName":"MediaCard"}) as unknown as TypedDocumentString<MediaCardFragment, unknown>;
+export const StudioDetailFragmentDoc = new TypedDocumentString(`
+    fragment StudioDetail on Studio {
+  id
+  name
+  siteUrl
+  isAnimationStudio
+  bannerMedia: media(
+    isMain: $bannerMediaIsMain
+    sort: $bannerMediaSort
+    page: $bannerMediaPage
+    perPage: $bannerMediaPerPage
+  ) {
+    nodes {
+      id
+      bannerImage
+      title {
+        romaji
+        native
+        english
+      }
+    }
+  }
+  mainMedia: media(sort: $mediaSort, page: $mediaPage, perPage: $mediaPerPage) {
+    nodes {
+      ...MediaCard
+    }
+    pageInfo {
+      total
+      perPage
+      currentPage
+      lastPage
+      hasNextPage
+    }
+  }
+}
+    fragment MediaCard on Media {
+  title {
+    romaji
+    english
+    native
+  }
+  coverImage {
+    extraLarge
+    large
+    medium
+  }
+  averageScore
+  description(asHtml: true)
+  status
+  id
+  genres
+  format
+  type
+}`, {"fragmentName":"StudioDetail"}) as unknown as TypedDocumentString<StudioDetailFragment, unknown>;
 export const MostFavoritedCharactersDocument = new TypedDocumentString(`
     query MostFavoritedCharacters($page: Int, $perPage: Int) {
   Page(page: $page, perPage: $perPage) {
