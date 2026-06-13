@@ -26,3 +26,13 @@ export type QueryVariables<T> =
 	T extends TypedDocumentString<unknown, infer V> ? V : never;
 
 // --------------------------------------------------------
+
+export type QueryType<TQuery, TConfig> = TQuery extends CompoundRouteQuery
+	? TConfig extends { dataType: keyof TQuery }
+		? TQuery[TConfig["dataType"]]
+		: never
+	: TQuery extends RouteQuery
+		? TQuery
+		: never;
+
+// --------------------------------------------------------
