@@ -6,7 +6,7 @@ import DOMPurify from "isomorphic-dompurify";
 
 function sanitizeAniListDescription(html?: string | null) {
 	if (!html) {
-		return "No description available.";
+		return null;
 	}
 
 	return DOMPurify.sanitize(html, {
@@ -29,32 +29,29 @@ function sanitizeAniListDescription(html?: string | null) {
 
 // -------------------------------------------------------------
 
-function sanitizeAniListNode<T>(node: T): T {
-	if (
-		node &&
-		typeof node === "object" &&
-		"description" in node &&
-		typeof node.description === "string"
-	) {
-		return {
-			...node,
-			description: sanitizeAniListDescription(node.description),
-		};
+function deepSanitizeDescriptions<T>(data: T): T {
+	if (!data || typeof data !== "object") {
+		return data;
 	}
-	return node;
-}
 
-// ---------------------
-
-function sanitizeAniListNodes<T>(node: T): T {
-	if (Array.isArray(node)) {
-		return node.map((item) => sanitizeAniListNode(item)) as T;
+	if (Array.isArray(data)) {
+		return data.map((item) => deepSanitizeDescriptions(item)) as T;
 	}
-	return sanitizeAniListNode(node);
+
+	const sanitizedObj: Record<string, unknown> = {};
+	for (const [key, val] of Object.entries(data)) {
+		if (key === "description" && typeof val === "string") {
+			sanitizedObj[key] = sanitizeAniListDescription(val);
+		} else {
+			sanitizedObj[key] = deepSanitizeDescriptions(val);
+		}
+	}
+
+	return sanitizedObj as T;
 }
 
 // -------------------------------------------------------------
 
-export { sanitizeAniListNodes };
+export { deepSanitizeDescriptions, sanitizeAniListDescription };
 
 // -------------------------------------------------------------
