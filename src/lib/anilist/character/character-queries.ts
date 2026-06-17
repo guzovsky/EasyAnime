@@ -16,8 +16,11 @@ const CHARACTER_QUERY_MAP = {
 	mostFavorited: MostFavoritedCharactersDocument,
 } as const satisfies QueryMap<CharacterRouteKey>;
 
+type CharacterQueryMap = typeof CHARACTER_QUERY_MAP;
+
 // --------------------------------------------------------
 
+export type { CharacterQueryMap };
 export { CHARACTER_QUERY_MAP };
 
 // --------------------------------------------------------
