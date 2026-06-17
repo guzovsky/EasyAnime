@@ -37,7 +37,7 @@ query StudioAll(
 # -------------------------------------------------- Detail
 
 query StudioDetailQuery(
-	$studioId: Int
+	$studioId: Int!
 	$mediaSort: [MediaSort]
 	$mediaPage: Int
 	$mediaPerPage: Int

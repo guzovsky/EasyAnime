@@ -262,7 +262,7 @@ export type CharacterAllQueryVariables = Exact<{
 export type CharacterAllQuery = { birthday: { characters: Array<{ id: number, description: string | null, gender: string | null, age: string | null, name: { full: string | null, native: string | null } | null, image: { large: string | null, medium: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null, mostFavorited: { characters: Array<{ id: number, description: string | null, gender: string | null, age: string | null, name: { full: string | null, native: string | null } | null, image: { large: string | null, medium: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null };
 
 export type CharacterDetailQueryQueryVariables = Exact<{
-  characterId?: number | null | undefined;
+  characterId: number;
   mediaSort?: Array<MediaSort | null | undefined> | MediaSort | null | undefined;
   voiceActorsLanguage?: StaffLanguage | null | undefined;
   voiceActorsSort?: Array<StaffSort | null | undefined> | StaffSort | null | undefined;
@@ -382,7 +382,7 @@ export type MediaBannerFragment = { bannerImage: string | null, id: number, genr
 export type MediaDetailFragment = { id: number, type: MediaType | null, synonyms: Array<string | null> | null, chapters: number | null, volumes: number | null, episodes: number | null, duration: number | null, averageScore: number | null, countryOfOrigin: unknown, bannerImage: string | null, hashtag: string | null, description: string | null, format: MediaFormat | null, genres: Array<string | null> | null, updatedAt: number | null, seasonYear: number | null, season: MediaSeason | null, source: MediaSource | null, siteUrl: string | null, status: MediaStatus | null, title: { english: string | null, romaji: string | null, native: string | null } | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null, externalLinks: Array<{ icon: string | null, id: number, type: ExternalLinkType | null, url: string | null, site: string, language: string | null, siteId: number | null } | null> | null, nextAiringEpisode: { airingAt: number, episode: number, id: number, timeUntilAiring: number } | null, rankings: Array<{ allTime: boolean | null, context: string, rank: number, type: MediaRankType, format: MediaFormat, id: number, season: MediaSeason | null, year: number | null } | null> | null, endDate: { year: number | null, month: number | null, day: number | null } | null, startDate: { year: number | null, month: number | null, day: number | null } | null, streamingEpisodes: Array<{ title: string | null, thumbnail: string | null, url: string | null, site: string | null } | null> | null, studios: { nodes: Array<{ id: number, name: string, siteUrl: string | null } | null> | null } | null, trailer: { id: string | null, site: string | null, thumbnail: string | null } | null, characters: { edges: Array<{ id: number | null, node: { id: number, image: { large: string | null, medium: string | null } | null, name: { full: string | null, native: string | null } | null } | null, voiceActors: Array<{ id: number, image: { large: string | null, medium: string | null } | null, name: { full: string | null, native: string | null } | null } | null> | null } | null> | null } | null, recommendations: { nodes: Array<{ id: number, mediaRecommendation: { id: number, title: { english: string | null, native: string | null, romaji: string | null } | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null } | null } | null> | null } | null, relations: { edges: Array<{ id: number | null, relationType: MediaRelation | null, node: { format: MediaFormat | null, type: MediaType | null, id: number, title: { english: string | null, native: string | null, romaji: string | null } | null, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null } | null } | null> | null } | null, staff: { nodes: Array<{ id: number, image: { large: string | null, medium: string | null } | null, name: { full: string | null, native: string | null } | null } | null> | null } | null };
 
 export type MediaDetailQueryQueryVariables = Exact<{
-  mediaId?: number | null | undefined;
+  mediaId: number;
   voiceActorLanguage?: StaffLanguage | null | undefined;
   recommendationSort?: Array<RecommendationSort | null | undefined> | RecommendationSort | null | undefined;
   staffSort?: Array<StaffSort | null | undefined> | StaffSort | null | undefined;
@@ -440,7 +440,7 @@ export type StaffAllQueryVariables = Exact<{
 export type StaffAllQuery = { birthday: { staff: Array<{ age: number | null, description: string | null, gender: string | null, id: number, primaryOccupations: Array<string | null> | null, image: { large: string | null, medium: string | null } | null, name: { full: string | null, native: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null, mostFavorited: { staff: Array<{ age: number | null, description: string | null, gender: string | null, id: number, primaryOccupations: Array<string | null> | null, image: { large: string | null, medium: string | null } | null, name: { full: string | null, native: string | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null };
 
 export type StaffDetailQueryQueryVariables = Exact<{
-  staffId?: number | null | undefined;
+  staffId: number;
   characterMediaSort?: Array<MediaSort | null | undefined> | MediaSort | null | undefined;
 }>;
 
@@ -476,7 +476,7 @@ export type StudioAllQueryVariables = Exact<{
 export type StudioAllQuery = { mostFavorited: { studios: Array<{ id: number, name: string, media: { nodes: Array<{ id: number, coverImage: { extraLarge: string | null, large: string | null, medium: string | null } | null, title: { english: string | null, native: string | null, romaji: string | null } | null } | null> | null } | null } | null> | null, pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null } | null };
 
 export type StudioDetailQueryQueryVariables = Exact<{
-  studioId?: number | null | undefined;
+  studioId: number;
   mediaSort?: Array<MediaSort | null | undefined> | MediaSort | null | undefined;
   mediaPage?: number | null | undefined;
   mediaPerPage?: number | null | undefined;
@@ -1067,7 +1067,7 @@ fragment PageInfoData on Page {
   }
 }`) as unknown as TypedDocumentString<CharacterAllQuery, CharacterAllQueryVariables>;
 export const CharacterDetailQueryDocument = new TypedDocumentString(`
-    query CharacterDetailQuery($characterId: Int, $mediaSort: [MediaSort], $voiceActorsLanguage: StaffLanguage, $voiceActorsSort: [StaffSort]) {
+    query CharacterDetailQuery($characterId: Int!, $mediaSort: [MediaSort], $voiceActorsLanguage: StaffLanguage, $voiceActorsSort: [StaffSort]) {
   Character(id: $characterId) {
     ...CharacterDetail
   }
@@ -1602,7 +1602,7 @@ fragment PageInfoData on Page {
   }
 }`) as unknown as TypedDocumentString<MangaAllQuery, MangaAllQueryVariables>;
 export const MediaDetailQueryDocument = new TypedDocumentString(`
-    query MediaDetailQuery($mediaId: Int, $voiceActorLanguage: StaffLanguage, $recommendationSort: [RecommendationSort], $staffSort: [StaffSort]) {
+    query MediaDetailQuery($mediaId: Int!, $voiceActorLanguage: StaffLanguage, $recommendationSort: [RecommendationSort], $staffSort: [StaffSort]) {
   Media(id: $mediaId) {
     ...MediaDetail
   }
@@ -1963,7 +1963,7 @@ fragment StaffCard on Staff {
   }
 }`) as unknown as TypedDocumentString<StaffAllQuery, StaffAllQueryVariables>;
 export const StaffDetailQueryDocument = new TypedDocumentString(`
-    query StaffDetailQuery($staffId: Int, $characterMediaSort: [MediaSort]) {
+    query StaffDetailQuery($staffId: Int!, $characterMediaSort: [MediaSort]) {
   Staff(id: $staffId) {
     ...StaffDetail
   }
@@ -2112,7 +2112,7 @@ fragment StudioCard on Studio {
   }
 }`) as unknown as TypedDocumentString<StudioAllQuery, StudioAllQueryVariables>;
 export const StudioDetailQueryDocument = new TypedDocumentString(`
-    query StudioDetailQuery($studioId: Int, $mediaSort: [MediaSort], $mediaPage: Int, $mediaPerPage: Int, $bannerMediaPage: Int, $bannerMediaPerPage: Int, $bannerMediaSort: [MediaSort], $bannerMediaIsMain: Boolean) {
+    query StudioDetailQuery($studioId: Int!, $mediaSort: [MediaSort], $mediaPage: Int, $mediaPerPage: Int, $bannerMediaPage: Int, $bannerMediaPerPage: Int, $bannerMediaSort: [MediaSort], $bannerMediaIsMain: Boolean) {
   Studio(id: $studioId) {
     ...StudioDetail
   }

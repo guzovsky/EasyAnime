@@ -1,7 +1,7 @@
 # -------------------------------------------------- Detail
 
 query MediaDetailQuery(
-	$mediaId: Int
+	$mediaId: Int!
 	$voiceActorLanguage: StaffLanguage
 	$recommendationSort: [RecommendationSort]
 	$staffSort: [StaffSort]
