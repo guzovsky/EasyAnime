@@ -9,7 +9,7 @@ import type {
 	TrendingAnimeQueryVariables,
 	UpcomingAnimeQueryVariables,
 } from "@/gql/graphql";
-import { PAGE_DEFAULTS } from "../../constants";
+import { DEFAULT_PAGINATION_VARIABLES, PAGE_DEFAULTS } from "../../constants";
 import type { RouteFetchers } from "../../types/route-fetchers";
 import {
 	getAniListCurrentSeason,
@@ -28,8 +28,7 @@ const fetchAllAnime = (v: AnimeAllQueryVariables = {}) => {
 	});
 
 	const variables = {
-		page: PAGE_DEFAULTS.PAGE,
-		perPage: PAGE_DEFAULTS.PER_PAGE,
+		...DEFAULT_PAGINATION_VARIABLES,
 		bannerPerPage: PAGE_DEFAULTS.BANNER_PER_PAGE,
 		popularThisSeasonSeason: season,
 		popularThisSeasonSeasonYear: year,
@@ -45,8 +44,7 @@ const fetchAllAnime = (v: AnimeAllQueryVariables = {}) => {
 
 const fetchPopularAnime = (v: PopularAnimeQueryVariables = {}) => {
 	const variables = {
-		page: PAGE_DEFAULTS.PAGE,
-		perPage: PAGE_DEFAULTS.PER_PAGE,
+		...DEFAULT_PAGINATION_VARIABLES,
 		...v,
 	} satisfies PopularAnimeQueryVariables;
 
@@ -61,8 +59,7 @@ const fetchPopularThisSeasonAnime = (
 	const { season, year } = getAniListCurrentSeason();
 
 	const variables = {
-		page: PAGE_DEFAULTS.PAGE,
-		perPage: PAGE_DEFAULTS.PER_PAGE,
+		...DEFAULT_PAGINATION_VARIABLES,
 		season,
 		seasonYear: year,
 		...v,
@@ -77,8 +74,7 @@ const fetchUpcomingAnime = (v: UpcomingAnimeQueryVariables = {}) => {
 	const { season, year } = getAniListNextSeason();
 
 	const variables = {
-		page: PAGE_DEFAULTS.PAGE,
-		perPage: PAGE_DEFAULTS.PER_PAGE,
+		...DEFAULT_PAGINATION_VARIABLES,
 		season,
 		seasonYear: year,
 		...v,
@@ -98,8 +94,7 @@ const fetchTrendingAnimeBanner = (
 	v: TrendingAnimeBannerQueryVariables = {}
 ) => {
 	const variables = {
-		page: PAGE_DEFAULTS.PAGE,
-		perPage: PAGE_DEFAULTS.BANNER_PER_PAGE,
+		...DEFAULT_PAGINATION_VARIABLES,
 		...v,
 	} satisfies TrendingAnimeBannerQueryVariables;
 
@@ -118,8 +113,7 @@ const fetchTrendingAnimeBanner = (
 
 const fetchTrendingAnimeCard = (v: TrendingAnimeQueryVariables = {}) => {
 	const variables = {
-		page: PAGE_DEFAULTS.PAGE,
-		perPage: PAGE_DEFAULTS.PER_PAGE,
+		...DEFAULT_PAGINATION_VARIABLES,
 		...v,
 	} satisfies TrendingAnimeQueryVariables;
 
