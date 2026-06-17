@@ -78,12 +78,13 @@ query TrendingAnimeBanner($page: Int, $perPage: Int) {
 query AnimeAll(
 	$page: Int
 	$perPage: Int
+	$bannerPerPage: Int
 	$popularThisSeasonSeason: MediaSeason
 	$popularThisSeasonSeasonYear: Int
 	$upcomingSeason: MediaSeason
 	$upcomingSeasonYear: Int
 ) {
-	trendingAnimeBanner: Page(page: $page, perPage: $perPage) {
+	trendingAnimeBanner: Page(page: $page, perPage: $bannerPerPage) {
 		media(sort: TRENDING_DESC, type: ANIME) {
 			...MediaBanner
 		}

@@ -322,6 +322,7 @@ export type TrendingAnimeBannerQuery = { Page: { media: Array<{ bannerImage: str
 export type AnimeAllQueryVariables = Exact<{
   page?: number | null | undefined;
   perPage?: number | null | undefined;
+  bannerPerPage?: number | null | undefined;
   popularThisSeasonSeason?: MediaSeason | null | undefined;
   popularThisSeasonSeasonYear?: number | null | undefined;
   upcomingSeason?: MediaSeason | null | undefined;
@@ -1312,8 +1313,8 @@ fragment PageInfoData on Page {
   }
 }`) as unknown as TypedDocumentString<TrendingAnimeBannerQuery, TrendingAnimeBannerQueryVariables>;
 export const AnimeAllDocument = new TypedDocumentString(`
-    query AnimeAll($page: Int, $perPage: Int, $popularThisSeasonSeason: MediaSeason, $popularThisSeasonSeasonYear: Int, $upcomingSeason: MediaSeason, $upcomingSeasonYear: Int) {
-  trendingAnimeBanner: Page(page: $page, perPage: $perPage) {
+    query AnimeAll($page: Int, $perPage: Int, $bannerPerPage: Int, $popularThisSeasonSeason: MediaSeason, $popularThisSeasonSeasonYear: Int, $upcomingSeason: MediaSeason, $upcomingSeasonYear: Int) {
+  trendingAnimeBanner: Page(page: $page, perPage: $bannerPerPage) {
     media(sort: TRENDING_DESC, type: ANIME) {
       ...MediaBanner
     }
