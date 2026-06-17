@@ -1,6 +1,5 @@
 // --------------------------------------------------------
 
-import type { ResultOf } from "@graphql-typed-document-node/core";
 import type { AnimeRouteKey } from "@/config/routes";
 import type {
 	AnimeAllQueryVariables,
@@ -11,12 +10,12 @@ import type {
 	UpcomingAnimeQueryVariables,
 } from "@/gql/graphql";
 import { PAGE_DEFAULTS } from "../../constants";
-import type { CompoundRouteQuery, QueryVariables } from "../../queries/types";
+import type { RouteFetchers } from "../../types/route-fetchers";
 import {
 	getAniListCurrentSeason,
 	getAniListNextSeason,
 } from "../../utils/season";
-import type { ANIME_QUERY_MAP } from "./anime-queries";
+import type { AnimeQueryMap } from "./anime-queries";
 import { fetchAnime } from "./fetch-anime";
 
 // --------------------------------------------------------
@@ -91,7 +90,7 @@ const fetchUpcomingAnime = (v: UpcomingAnimeQueryVariables = {}) => {
 // ---------------------
 
 const TRENDING_ROUTE_KEY = "trending" satisfies AnimeRouteKey;
-type TrendingAnimeQueryType = keyof typeof ANIME_QUERY_MAP.trending;
+type TrendingAnimeQueryType = keyof AnimeQueryMap["trending"];
 
 // ---------------------
 
@@ -135,21 +134,6 @@ const fetchTrendingAnimeCard = (v: TrendingAnimeQueryVariables = {}) => {
 	);
 };
 
-// --------------------------------------------------------
-
-type AnimeFetchersType = {
-	[K in AnimeRouteKey]: (typeof ANIME_QUERY_MAP)[K] extends infer Q extends
-		CompoundRouteQuery
-		? {
-				[QKey in keyof Q]: (
-					v: QueryVariables<Q[QKey]>
-				) => Promise<ResultOf<Q[QKey]>>;
-			}
-		: (
-				v: QueryVariables<(typeof ANIME_QUERY_MAP)[K]>
-			) => Promise<ResultOf<(typeof ANIME_QUERY_MAP)[K]>>;
-};
-
 // ---------------------
 
 const _contractCheck = {
@@ -161,7 +145,7 @@ const _contractCheck = {
 		banner: fetchTrendingAnimeBanner,
 		card: fetchTrendingAnimeCard,
 	},
-} as const satisfies AnimeFetchersType;
+} as const satisfies RouteFetchers<AnimeRouteKey, AnimeQueryMap>;
 
 // --------------------------------------------------------
 

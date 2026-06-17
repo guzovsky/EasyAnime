@@ -24,8 +24,11 @@ const ANIME_QUERY_MAP = {
 	upcoming: UpcomingAnimeDocument,
 } as const satisfies QueryMap<AnimeRouteKey>;
 
+type AnimeQueryMap = typeof ANIME_QUERY_MAP;
+
 // --------------------------------------------------------
 
+export type { AnimeQueryMap };
 export { ANIME_QUERY_MAP };
 
 // --------------------------------------------------------
