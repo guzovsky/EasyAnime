@@ -367,6 +367,7 @@ export type TrendingMangaBannerQuery = { Page: { media: Array<{ bannerImage: str
 export type MangaAllQueryVariables = Exact<{
   page?: number | null | undefined;
   perPage?: number | null | undefined;
+  bannerPerPage?: number | null | undefined;
 }>;
 
 
@@ -1535,8 +1536,8 @@ fragment PageInfoData on Page {
   }
 }`) as unknown as TypedDocumentString<TrendingMangaBannerQuery, TrendingMangaBannerQueryVariables>;
 export const MangaAllDocument = new TypedDocumentString(`
-    query MangaAll($page: Int, $perPage: Int) {
-  trendingMangaBanner: Page(page: $page, perPage: $perPage) {
+    query MangaAll($page: Int, $perPage: Int, $bannerPerPage: Int) {
+  trendingMangaBanner: Page(page: $page, perPage: $bannerPerPage) {
     media(sort: TRENDING_DESC, type: MANGA) {
       ...MediaBanner
     }

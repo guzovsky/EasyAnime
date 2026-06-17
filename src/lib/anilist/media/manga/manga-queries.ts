@@ -22,8 +22,11 @@ const MANGA_QUERY_MAP = {
 	popularManhwa: PopularManhwaDocument,
 } as const satisfies QueryMap<MangaRouteKey>;
 
+type MangaQueryMap = typeof MANGA_QUERY_MAP;
+
 // --------------------------------------------------------
 
+export type { MangaQueryMap };
 export { MANGA_QUERY_MAP };
 
 // --------------------------------------------------------
