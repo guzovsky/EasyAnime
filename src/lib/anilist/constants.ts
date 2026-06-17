@@ -21,8 +21,16 @@ const ANILIST_ERRORS = {
 	NON_2XX_STATUS,
 } as const;
 
+// ----------------------------------------------- Defaults
+
+const PAGE_DEFAULTS = {
+	PAGE: 1,
+	PER_PAGE: 10,
+	BANNER_PER_PAGE: 5,
+} as const;
+
 // ------------------------------------------------ Exports
 
-export { ANILIST_ERRORS, ANILIST_GRAPHQL_URL };
+export { ANILIST_ERRORS, ANILIST_GRAPHQL_URL, PAGE_DEFAULTS };
 
 // --------------------------------------------------------
