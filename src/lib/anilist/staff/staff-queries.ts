@@ -16,8 +16,11 @@ const STAFF_QUERY_MAP = {
 	mostFavorited: MostFavoritedStaffsDocument,
 } as const satisfies QueryMap<StaffRouteKey>;
 
+type StaffQueryMap = typeof STAFF_QUERY_MAP;
+
 // --------------------------------------------------------
 
+export type { StaffQueryMap };
 export { STAFF_QUERY_MAP };
 
 // --------------------------------------------------------
