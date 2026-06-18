@@ -29,29 +29,6 @@ function sanitizeAniListDescription(html?: string | null) {
 
 // -------------------------------------------------------------
 
-function deepSanitizeDescriptions<T>(data: T): T {
-	if (!data || typeof data !== "object") {
-		return data;
-	}
-
-	if (Array.isArray(data)) {
-		return data.map((item) => deepSanitizeDescriptions(item)) as T;
-	}
-
-	const sanitizedObj: Record<string, unknown> = {};
-	for (const [key, val] of Object.entries(data)) {
-		if (key === "description" && typeof val === "string") {
-			sanitizedObj[key] = sanitizeAniListDescription(val);
-		} else {
-			sanitizedObj[key] = deepSanitizeDescriptions(val);
-		}
-	}
-
-	return sanitizedObj as T;
-}
-
-// -------------------------------------------------------------
-
-export { deepSanitizeDescriptions, sanitizeAniListDescription };
+export { sanitizeAniListDescription };
 
 // -------------------------------------------------------------

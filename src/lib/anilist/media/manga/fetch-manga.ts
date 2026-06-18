@@ -2,7 +2,7 @@
 
 import type { MangaRouteKey } from "@/config/routes";
 import type { CompoundDataType, FetchArgs } from "../../types/fetch";
-import { resolveRequestAndSanitize } from "../../utils/resolve-request-and-sanitize";
+import { resolveAndRequest } from "../../utils/resolve-and-request";
 import { MANGA_QUERY_MAP, type MangaQueryMap } from "./manga-queries";
 
 // --------------------------------------------------------
@@ -12,7 +12,7 @@ function fetchManga<
 	TDataType extends CompoundDataType<K, MangaQueryMap>,
 >(...[key, config]: FetchArgs<K, MangaQueryMap, TDataType>) {
 	const queryConfig = MANGA_QUERY_MAP[key];
-	return resolveRequestAndSanitize(queryConfig, config);
+	return resolveAndRequest(queryConfig, config);
 }
 
 // --------------------------------------------------------

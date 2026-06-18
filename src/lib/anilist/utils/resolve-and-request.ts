@@ -3,11 +3,10 @@
 import type { ResultOf } from "@graphql-typed-document-node/core";
 import { requestAniList } from "../client";
 import type { QueryType, RouteQuery } from "../queries/types";
-import { deepSanitizeDescriptions } from "./sanitize-anilist-description";
 
 // --------------------------------------------------------
 
-async function resolveRequestAndSanitize<TQueryConfig, TConfig>(
+function resolveAndRequest<TQueryConfig, TConfig>(
 	queryConfig: TQueryConfig,
 	config: TConfig
 ) {
@@ -23,15 +22,13 @@ async function resolveRequestAndSanitize<TQueryConfig, TConfig>(
 			: {}
 	) as Record<string, unknown>;
 
-	const data = (await requestAniList({ query, variables })) as ResultOf<
-		QueryType<TQueryConfig, TConfig>
+	return requestAniList({ query, variables }) as Promise<
+		ResultOf<QueryType<TQueryConfig, TConfig>>
 	>;
-
-	return deepSanitizeDescriptions(data);
 }
 
 // --------------------------------------------------------
 
-export { resolveRequestAndSanitize };
+export { resolveAndRequest };
 
 // --------------------------------------------------------

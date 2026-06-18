@@ -2,7 +2,7 @@
 
 import type { CharacterRouteKey } from "@/config/routes";
 import type { CompoundDataType, FetchArgs } from "../types/fetch";
-import { resolveRequestAndSanitize } from "../utils/resolve-request-and-sanitize";
+import { resolveAndRequest } from "../utils/resolve-and-request";
 import {
 	CHARACTER_QUERY_MAP,
 	type CharacterQueryMap,
@@ -15,7 +15,7 @@ function fetchCharacter<
 	TDataType extends CompoundDataType<K, CharacterQueryMap>,
 >(...[key, config]: FetchArgs<K, CharacterQueryMap, TDataType>) {
 	const queryConfig = CHARACTER_QUERY_MAP[key];
-	return resolveRequestAndSanitize(queryConfig, config);
+	return resolveAndRequest(queryConfig, config);
 }
 
 // --------------------------------------------------------
