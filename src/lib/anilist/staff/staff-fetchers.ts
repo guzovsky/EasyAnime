@@ -17,7 +17,7 @@ const fetchAllStaff = (v: StaffAllQueryVariables = {}) => {
 	const variables = {
 		...DEFAULT_PAGINATION_VARIABLES,
 		...v,
-	} satisfies StaffAllQueryVariables;
+	} satisfies Required<StaffAllQueryVariables>;
 
 	return fetchStaff("all", { variables });
 };
@@ -28,7 +28,7 @@ const fetchBirthdayStaffs = (v: BirthdayStaffsQueryVariables = {}) => {
 	const variables = {
 		...DEFAULT_PAGINATION_VARIABLES,
 		...v,
-	} satisfies BirthdayStaffsQueryVariables;
+	} satisfies Required<BirthdayStaffsQueryVariables>;
 
 	return fetchStaff("birthday", { variables });
 };
@@ -41,7 +41,7 @@ const fetchMostFavoritedStaffs = (
 	const variables = {
 		...DEFAULT_PAGINATION_VARIABLES,
 		...v,
-	} satisfies MostFavoritedStaffsQueryVariables;
+	} satisfies Required<MostFavoritedStaffsQueryVariables>;
 
 	return fetchStaff("mostFavorited", { variables });
 };

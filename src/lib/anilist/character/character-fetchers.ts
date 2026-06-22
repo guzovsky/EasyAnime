@@ -17,7 +17,7 @@ const fetchAllCharacters = (v: CharacterAllQueryVariables = {}) => {
 	const variables = {
 		...DEFAULT_PAGINATION_VARIABLES,
 		...v,
-	} satisfies CharacterAllQueryVariables;
+	} satisfies Required<CharacterAllQueryVariables>;
 
 	return fetchCharacter("all", { variables });
 };
@@ -28,7 +28,7 @@ const fetchBirthdayCharacters = (v: BirthdayCharactersQueryVariables = {}) => {
 	const variables = {
 		...DEFAULT_PAGINATION_VARIABLES,
 		...v,
-	} satisfies BirthdayCharactersQueryVariables;
+	} satisfies Required<BirthdayCharactersQueryVariables>;
 
 	return fetchCharacter("birthday", { variables });
 };
@@ -41,7 +41,7 @@ const fetchMostFavoritedCharacters = (
 	const variables = {
 		...DEFAULT_PAGINATION_VARIABLES,
 		...v,
-	} satisfies MostFavoritedCharactersQueryVariables;
+	} satisfies Required<MostFavoritedCharactersQueryVariables>;
 
 	return fetchCharacter("mostFavorited", { variables });
 };

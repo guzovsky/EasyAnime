@@ -21,7 +21,7 @@ async function fetchMediaDetailById({
 			recommendationSort,
 			staffSort,
 			voiceActorLanguage,
-		},
+		} satisfies Required<MediaDetailQueryQueryVariables>,
 	});
 
 	return Media;

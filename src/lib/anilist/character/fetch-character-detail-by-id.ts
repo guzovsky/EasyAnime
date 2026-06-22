@@ -21,7 +21,7 @@ async function fetchCharacterDetailById({
 			mediaSort,
 			voiceActorsLanguage,
 			voiceActorsSort,
-		},
+		} satisfies Required<CharacterDetailQueryQueryVariables>,
 	});
 
 	return Character;

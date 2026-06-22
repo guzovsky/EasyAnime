@@ -35,7 +35,7 @@ const fetchAllAnime = (v: AnimeAllQueryVariables = {}) => {
 		upcomingSeason: nextSeason,
 		upcomingSeasonYear: nextSeasonYear,
 		...v,
-	} satisfies AnimeAllQueryVariables;
+	} satisfies Required<AnimeAllQueryVariables>;
 
 	return fetchAnime("all", { variables });
 };
@@ -46,7 +46,7 @@ const fetchPopularAnime = (v: PopularAnimeQueryVariables = {}) => {
 	const variables = {
 		...DEFAULT_PAGINATION_VARIABLES,
 		...v,
-	} satisfies PopularAnimeQueryVariables;
+	} satisfies Required<PopularAnimeQueryVariables>;
 
 	return fetchAnime("popular", { variables });
 };
@@ -63,7 +63,7 @@ const fetchPopularThisSeasonAnime = (
 		season,
 		seasonYear: year,
 		...v,
-	} satisfies PopularThisSeasonAnimeQueryVariables;
+	} satisfies Required<PopularThisSeasonAnimeQueryVariables>;
 
 	return fetchAnime("popularThisSeason", { variables });
 };
@@ -78,7 +78,7 @@ const fetchUpcomingAnime = (v: UpcomingAnimeQueryVariables = {}) => {
 		season,
 		seasonYear: year,
 		...v,
-	} satisfies UpcomingAnimeQueryVariables;
+	} satisfies Required<UpcomingAnimeQueryVariables>;
 
 	return fetchAnime("upcoming", { variables });
 };
@@ -96,7 +96,7 @@ const fetchTrendingAnimeBanner = (
 	const variables = {
 		...DEFAULT_PAGINATION_VARIABLES,
 		...v,
-	} satisfies TrendingAnimeBannerQueryVariables;
+	} satisfies Required<TrendingAnimeBannerQueryVariables>;
 
 	const dataType = "banner" satisfies TrendingAnimeQueryType;
 
@@ -115,7 +115,7 @@ const fetchTrendingAnimeCard = (v: TrendingAnimeQueryVariables = {}) => {
 	const variables = {
 		...DEFAULT_PAGINATION_VARIABLES,
 		...v,
-	} satisfies TrendingAnimeQueryVariables;
+	} satisfies Required<TrendingAnimeQueryVariables>;
 
 	const dataType = "card" satisfies TrendingAnimeQueryType;
 

@@ -12,8 +12,8 @@ import { PAGE_DEFAULTS } from "../constants";
 async function fetchStudioDetailById({
 	studioId,
 	bannerMediaIsMain = true,
-	bannerMediaPage = PAGE_DEFAULTS.PAGE,
-	bannerMediaPerPage = PAGE_DEFAULTS.BANNER_PER_PAGE,
+	bannerMediaPage = 1,
+	bannerMediaPerPage = 2,
 	bannerMediaSort = "POPULARITY_DESC",
 	mediaPage = PAGE_DEFAULTS.PAGE,
 	mediaPerPage = PAGE_DEFAULTS.PER_PAGE,
@@ -30,7 +30,7 @@ async function fetchStudioDetailById({
 			mediaPerPage,
 			mediaSort,
 			bannerMediaPage,
-		},
+		} satisfies Required<StudioDetailQueryQueryVariables>,
 	});
 
 	return Studio;

@@ -14,7 +14,10 @@ async function fetchStaffDetailById({
 }: StaffDetailQueryQueryVariables) {
 	const { Staff } = await requestAniList({
 		query: StaffDetailQueryDocument,
-		variables: { staffId, characterMediaSort },
+		variables: {
+			staffId,
+			characterMediaSort,
+		} satisfies Required<StaffDetailQueryQueryVariables>,
 	});
 
 	return Staff;

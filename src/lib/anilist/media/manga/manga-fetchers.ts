@@ -20,7 +20,7 @@ const fetchAllManga = (v: MangaAllQueryVariables = {}) => {
 		...DEFAULT_PAGINATION_VARIABLES,
 		bannerPerPage: PAGE_DEFAULTS.BANNER_PER_PAGE,
 		...v,
-	} satisfies MangaAllQueryVariables;
+	} satisfies Required<MangaAllQueryVariables>;
 
 	return fetchManga("all", { variables });
 };
@@ -31,7 +31,7 @@ const fetchPopularManga = (v: PopularMangaQueryVariables = {}) => {
 	const variables = {
 		...DEFAULT_PAGINATION_VARIABLES,
 		...v,
-	} satisfies PopularMangaQueryVariables;
+	} satisfies Required<PopularMangaQueryVariables>;
 
 	return fetchManga("popular", { variables });
 };
@@ -42,7 +42,7 @@ const fetchPopularManhwa = (v: PopularManhwaQueryVariables = {}) => {
 	const variables = {
 		...DEFAULT_PAGINATION_VARIABLES,
 		...v,
-	} satisfies PopularManhwaQueryVariables;
+	} satisfies Required<PopularManhwaQueryVariables>;
 
 	return fetchManga("popularManhwa", { variables });
 };
@@ -60,7 +60,7 @@ const fetchTrendingMangaBanner = (
 	const variables = {
 		...DEFAULT_PAGINATION_VARIABLES,
 		...v,
-	} satisfies TrendingMangaBannerQueryVariables;
+	} satisfies Required<TrendingMangaBannerQueryVariables>;
 
 	const dataType = "banner" satisfies TrendingMangaQueryType;
 
@@ -79,7 +79,7 @@ const fetchTrendingMangaCard = (v: TrendingMangaQueryVariables = {}) => {
 	const variables = {
 		...DEFAULT_PAGINATION_VARIABLES,
 		...v,
-	} satisfies TrendingMangaQueryVariables;
+	} satisfies Required<TrendingMangaQueryVariables>;
 
 	const dataType = "card" satisfies TrendingMangaQueryType;
 
