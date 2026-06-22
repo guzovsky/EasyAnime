@@ -1,5 +1,7 @@
 // -------------------------------------------------- Fetch
 
+import type { StudioAllQueryVariables } from "@/gql/graphql";
+
 // ---------------------- URL
 
 const ANILIST_GRAPHQL_URL = "https://graphql.anilist.co";
@@ -34,12 +36,23 @@ const DEFAULT_PAGINATION_VARIABLES = {
 	perPage: PAGE_DEFAULTS.PER_PAGE,
 } as const;
 
+// ---------------------
+
+const DEFAULT_STUDIO_VARIABLES = {
+	...DEFAULT_PAGINATION_VARIABLES,
+	mediaIsMain: true,
+	mediaPage: 1,
+	mediaPerPage: 2,
+	mediaSort: "POPULARITY_DESC",
+} as const satisfies Required<StudioAllQueryVariables>;
+
 // ------------------------------------------------ Exports
 
 export {
 	ANILIST_ERRORS,
 	ANILIST_GRAPHQL_URL,
 	DEFAULT_PAGINATION_VARIABLES,
+	DEFAULT_STUDIO_VARIABLES,
 	PAGE_DEFAULTS,
 };
 

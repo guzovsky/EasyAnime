@@ -11,8 +11,11 @@ const STUDIO_QUERY_MAP = {
 	mostFavorited: MostFavoritedStudiosDocument,
 } as const satisfies QueryMap<StudioRouteKey>;
 
+type StudioQueryMap = typeof STUDIO_QUERY_MAP;
+
 // --------------------------------------------------------
 
+export type { StudioQueryMap };
 export { STUDIO_QUERY_MAP };
 
 // --------------------------------------------------------
