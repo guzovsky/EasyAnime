@@ -394,7 +394,7 @@ export type MediaDetailQueryQuery = { Media: { id: number, type: MediaType | nul
 export type PageInfoDataFragment = { pageInfo: { total: number | null, perPage: number | null, currentPage: number | null, lastPage: number | null, hasNextPage: boolean | null } | null };
 
 export type QuickSearchQueryVariables = Exact<{
-  search?: string | null | undefined;
+  search: string;
   page?: number | null | undefined;
   perPage?: number | null | undefined;
   animeSort?: Array<MediaSort | null | undefined> | MediaSort | null | undefined;
@@ -1772,7 +1772,7 @@ export const MediaDetailQueryDocument = new TypedDocumentString(`
   }
 }`) as unknown as TypedDocumentString<MediaDetailQueryQuery, MediaDetailQueryQueryVariables>;
 export const QuickSearchDocument = new TypedDocumentString(`
-    query QuickSearch($search: String, $page: Int, $perPage: Int, $animeSort: [MediaSort], $mangaSort: [MediaSort], $characterSort: [CharacterSort], $staffSort: [StaffSort], $studioSort: [StudioSort], $studiosMediaSort: [MediaSort], $studiosMediaPage: Int, $studiosMediaPerPage: Int, $studiosMediaIsMain: Boolean) {
+    query QuickSearch($search: String!, $page: Int, $perPage: Int, $animeSort: [MediaSort], $mangaSort: [MediaSort], $characterSort: [CharacterSort], $staffSort: [StaffSort], $studioSort: [StudioSort], $studiosMediaSort: [MediaSort], $studiosMediaPage: Int, $studiosMediaPerPage: Int, $studiosMediaIsMain: Boolean) {
   anime: Page(page: $page, perPage: $perPage) {
     media(search: $search, type: ANIME, sort: $animeSort) {
       ...MiniMediaCard

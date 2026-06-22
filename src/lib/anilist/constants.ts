@@ -1,6 +1,9 @@
 // -------------------------------------------------- Fetch
 
-import type { StudioAllQueryVariables } from "@/gql/graphql";
+import type {
+	QuickSearchQueryVariables,
+	StudioAllQueryVariables,
+} from "@/gql/graphql";
 
 // ---------------------- URL
 
@@ -46,6 +49,22 @@ const DEFAULT_STUDIO_VARIABLES = {
 	mediaSort: "POPULARITY_DESC",
 } as const satisfies Required<StudioAllQueryVariables>;
 
+// ---------------------
+
+const QUICK_SEARCH_DEFAULTS = {
+	page: 1,
+	perPage: 4,
+	animeSort: "POPULARITY_DESC",
+	mangaSort: "POPULARITY_DESC",
+	characterSort: "FAVOURITES_DESC",
+	staffSort: "FAVOURITES_DESC",
+	studioSort: "FAVOURITES_DESC",
+	studiosMediaSort: "POPULARITY_DESC",
+	studiosMediaPage: DEFAULT_STUDIO_VARIABLES.mediaPage,
+	studiosMediaPerPage: DEFAULT_STUDIO_VARIABLES.mediaPerPage,
+	studiosMediaIsMain: true,
+} as const satisfies Omit<Required<QuickSearchQueryVariables>, "search">;
+
 // ------------------------------------------------ Exports
 
 export {
@@ -54,6 +73,7 @@ export {
 	DEFAULT_PAGINATION_VARIABLES,
 	DEFAULT_STUDIO_VARIABLES,
 	PAGE_DEFAULTS,
+	QUICK_SEARCH_DEFAULTS,
 };
 
 // --------------------------------------------------------
