@@ -1,14 +1,14 @@
 // --------------------------------------------------------
 
 import { buildFetcher } from "../build-fetcher";
-import { STAFF_QUERY_MAP } from "./staff-queries";
+import { STUDIO_ROUTE_QUERY_MAP } from "./route-queries";
 
 // --------------------------------------------------------
 
-const fetchStaff = buildFetcher(STAFF_QUERY_MAP);
+const fetchStudio = buildFetcher(STUDIO_ROUTE_QUERY_MAP);
 
 // --------------------------------------------------------
 
-export { fetchStaff };
+export { fetchStudio };
 
 // --------------------------------------------------------

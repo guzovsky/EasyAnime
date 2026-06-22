@@ -15,8 +15,8 @@ import {
 	getAniListCurrentSeason,
 	getAniListNextSeason,
 } from "../../utils/season";
-import type { AnimeQueryMap } from "./anime-queries";
-import { fetchAnime } from "./fetch-anime";
+import { fetchAnime } from "./fetcher";
+import type { AnimeRouteQueryMap } from "./route-queries";
 
 // --------------------------------------------------------
 
@@ -86,7 +86,7 @@ const fetchUpcomingAnime = (v: UpcomingAnimeQueryVariables = {}) => {
 // ---------------------
 
 const TRENDING_ROUTE_KEY = "trending" satisfies AnimeRouteKey;
-type TrendingAnimeQueryType = keyof AnimeQueryMap["trending"];
+type TrendingAnimeQueryType = keyof AnimeRouteQueryMap["trending"];
 
 // ---------------------
 
@@ -139,7 +139,7 @@ const _contractCheck = {
 		banner: fetchTrendingAnimeBanner,
 		card: fetchTrendingAnimeCard,
 	},
-} as const satisfies RouteFetchers<AnimeRouteKey, AnimeQueryMap>;
+} as const satisfies RouteFetchers<AnimeRouteKey, AnimeRouteQueryMap>;
 
 // --------------------------------------------------------
 

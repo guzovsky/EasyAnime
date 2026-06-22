@@ -15,7 +15,7 @@ export type RouteQueryConfig = RouteQuery | CompoundRouteQuery;
 
 // ---------------------
 
-export type QueryMap<RouteKey extends string> = Record<
+export type RouteQueryMap<RouteKey extends string> = Record<
 	RouteKey,
 	RouteQueryConfig
 >;

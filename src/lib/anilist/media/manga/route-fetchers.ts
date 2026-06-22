@@ -10,8 +10,8 @@ import type {
 } from "@/gql/graphql";
 import { DEFAULT_PAGINATION_VARIABLES, PAGE_DEFAULTS } from "../../constants";
 import type { RouteFetchers } from "../../types/route-fetchers";
-import { fetchManga } from "./fetch-manga";
-import type { MangaQueryMap } from "./manga-queries";
+import { fetchManga } from "./fetcher";
+import type { MangaRouteQueryMap } from "./route-queries";
 
 // --------------------------------------------------------
 
@@ -50,7 +50,7 @@ const fetchPopularManhwa = (v: PopularManhwaQueryVariables = {}) => {
 // ---------------------
 
 const TRENDING_ROUTE_KEY = "trending" satisfies MangaRouteKey;
-type TrendingMangaQueryType = keyof MangaQueryMap["trending"];
+type TrendingMangaQueryType = keyof MangaRouteQueryMap["trending"];
 
 // ---------------------
 
@@ -102,7 +102,7 @@ const _contractCheck = {
 		banner: fetchTrendingMangaBanner,
 		card: fetchTrendingMangaCard,
 	},
-} as const satisfies RouteFetchers<MangaRouteKey, MangaQueryMap>;
+} as const satisfies RouteFetchers<MangaRouteKey, MangaRouteQueryMap>;
 
 // --------------------------------------------------------
 

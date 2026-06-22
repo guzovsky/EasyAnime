@@ -8,8 +8,8 @@ import type {
 } from "@/gql/graphql";
 import { DEFAULT_PAGINATION_VARIABLES } from "../constants";
 import type { RouteFetchers } from "../types/route-fetchers";
-import type { CharacterQueryMap } from "./character-queries";
-import { fetchCharacter } from "./fetch-character";
+import { fetchCharacter } from "./fetcher";
+import type { CharacterRouteQueryMap } from "./route-queries";
 
 // --------------------------------------------------------
 
@@ -52,7 +52,7 @@ const _contractCheck = {
 	all: fetchAllCharacters,
 	birthday: fetchBirthdayCharacters,
 	mostFavorited: fetchMostFavoritedCharacters,
-} as const satisfies RouteFetchers<CharacterRouteKey, CharacterQueryMap>;
+} as const satisfies RouteFetchers<CharacterRouteKey, CharacterRouteQueryMap>;
 
 // --------------------------------------------------------
 

@@ -7,8 +7,8 @@ import type {
 } from "@/gql/graphql";
 import { DEFAULT_STUDIO_VARIABLES } from "../constants";
 import type { RouteFetchers } from "../types/route-fetchers";
-import { fetchStudio } from "./fetch-studio";
-import type { StudioQueryMap } from "./studio-queries";
+import { fetchStudio } from "./fetcher";
+import type { StudioRouteQueryMap } from "./route-queries";
 
 // --------------------------------------------------------
 
@@ -39,7 +39,7 @@ const fetchMostFavoritedStudios = (
 const _contractCheck = {
 	all: fetchAllStudio,
 	mostFavorited: fetchMostFavoritedStudios,
-} as const satisfies RouteFetchers<StudioRouteKey, StudioQueryMap>;
+} as const satisfies RouteFetchers<StudioRouteKey, StudioRouteQueryMap>;
 
 // --------------------------------------------------------
 

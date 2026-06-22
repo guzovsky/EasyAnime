@@ -1,14 +1,14 @@
 // --------------------------------------------------------
 
 import { buildFetcher } from "../build-fetcher";
-import { STUDIO_QUERY_MAP } from "./studio-queries";
+import { CHARACTER_ROUTE_QUERY_MAP } from "./route-queries";
 
 // --------------------------------------------------------
 
-const fetchStudio = buildFetcher(STUDIO_QUERY_MAP);
+const fetchCharacter = buildFetcher(CHARACTER_ROUTE_QUERY_MAP);
 
 // --------------------------------------------------------
 
-export { fetchStudio };
+export { fetchCharacter };
 
 // --------------------------------------------------------

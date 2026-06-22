@@ -1,8 +1,8 @@
 // --------------------------------------------------------
 
 import {
-	MediaDetailQueryDocument,
-	type MediaDetailQueryQueryVariables,
+	MediaDetailDocument,
+	type MediaDetailQueryVariables,
 } from "@/gql/graphql";
 import { requestAniList } from "../client";
 
@@ -13,15 +13,15 @@ async function fetchMediaDetailById({
 	recommendationSort = "RATING_DESC",
 	staffSort = "RELEVANCE",
 	voiceActorLanguage = "JAPANESE",
-}: MediaDetailQueryQueryVariables) {
+}: MediaDetailQueryVariables) {
 	const { Media } = await requestAniList({
-		query: MediaDetailQueryDocument,
+		query: MediaDetailDocument,
 		variables: {
 			mediaId,
 			recommendationSort,
 			staffSort,
 			voiceActorLanguage,
-		} satisfies Required<MediaDetailQueryQueryVariables>,
+		} satisfies Required<MediaDetailQueryVariables>,
 	});
 
 	return Media;

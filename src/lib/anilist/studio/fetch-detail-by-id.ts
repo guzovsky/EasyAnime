@@ -1,8 +1,8 @@
 // --------------------------------------------------------
 
 import {
-	StudioDetailQueryDocument,
-	type StudioDetailQueryQueryVariables,
+	StudioDetailDocument,
+	type StudioDetailQueryVariables,
 } from "@/gql/graphql";
 import { requestAniList } from "../client";
 import { PAGE_DEFAULTS } from "../constants";
@@ -18,9 +18,9 @@ async function fetchStudioDetailById({
 	mediaPage = PAGE_DEFAULTS.PAGE,
 	mediaPerPage = PAGE_DEFAULTS.PER_PAGE,
 	mediaSort = "POPULARITY_DESC",
-}: StudioDetailQueryQueryVariables) {
+}: StudioDetailQueryVariables) {
 	const { Studio } = await requestAniList({
-		query: StudioDetailQueryDocument,
+		query: StudioDetailDocument,
 		variables: {
 			studioId,
 			bannerMediaIsMain,
@@ -30,7 +30,7 @@ async function fetchStudioDetailById({
 			mediaPerPage,
 			mediaSort,
 			bannerMediaPage,
-		} satisfies Required<StudioDetailQueryQueryVariables>,
+		} satisfies Required<StudioDetailQueryVariables>,
 	});
 
 	return Studio;

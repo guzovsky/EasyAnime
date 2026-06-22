@@ -6,21 +6,21 @@ import {
 	MostFavoritedStaffsDocument,
 	StaffAllDocument,
 } from "@/gql/graphql";
-import type { QueryMap } from "../queries/types";
+import type { RouteQueryMap } from "../queries/types";
 
 // --------------------------------------------------------
 
-const STAFF_QUERY_MAP = {
+const STAFF_ROUTE_QUERY_MAP = {
 	all: StaffAllDocument,
 	birthday: BirthdayStaffsDocument,
 	mostFavorited: MostFavoritedStaffsDocument,
-} as const satisfies QueryMap<StaffRouteKey>;
+} as const satisfies RouteQueryMap<StaffRouteKey>;
 
-type StaffQueryMap = typeof STAFF_QUERY_MAP;
+type StaffRouteQueryMap = typeof STAFF_ROUTE_QUERY_MAP;
 
 // --------------------------------------------------------
 
-export type { StaffQueryMap };
-export { STAFF_QUERY_MAP };
+export type { StaffRouteQueryMap };
+export { STAFF_ROUTE_QUERY_MAP };
 
 // --------------------------------------------------------

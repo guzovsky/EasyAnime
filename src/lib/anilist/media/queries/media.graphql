@@ -1,6 +1,6 @@
 # -------------------------------------------------- Detail
 
-query MediaDetailQuery(
+query MediaDetail(
 	$mediaId: Int!
 	$voiceActorLanguage: StaffLanguage
 	$recommendationSort: [RecommendationSort]

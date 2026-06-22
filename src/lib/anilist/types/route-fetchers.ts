@@ -3,15 +3,15 @@
 import type { ResultOf } from "@graphql-typed-document-node/core";
 import type {
 	CompoundRouteQuery,
-	QueryMap,
 	QueryVariables,
+	RouteQueryMap,
 } from "../queries/types";
 
 // --------------------------------------------------------
 
 export type RouteFetchers<
 	TRouteKey extends string,
-	TQueryMap extends QueryMap<TRouteKey>,
+	TQueryMap extends RouteQueryMap<TRouteKey>,
 > = {
 	[K in TRouteKey]: TQueryMap[K] extends infer Q extends CompoundRouteQuery
 		? {

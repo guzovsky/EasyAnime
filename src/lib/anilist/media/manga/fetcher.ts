@@ -1,11 +1,11 @@
 // --------------------------------------------------------
 
 import { buildFetcher } from "../../build-fetcher";
-import { MANGA_QUERY_MAP } from "./manga-queries";
+import { MANGA_ROUTE_QUERY_MAP } from "./route-queries";
 
 // --------------------------------------------------------
 
-const fetchManga = buildFetcher(MANGA_QUERY_MAP);
+const fetchManga = buildFetcher(MANGA_ROUTE_QUERY_MAP);
 
 // --------------------------------------------------------
 

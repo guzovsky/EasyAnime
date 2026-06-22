@@ -1,8 +1,8 @@
 // --------------------------------------------------------
 
 import {
-	CharacterDetailQueryDocument,
-	type CharacterDetailQueryQueryVariables,
+	CharacterDetailDocument,
+	type CharacterDetailQueryVariables,
 } from "@/gql/graphql";
 import { requestAniList } from "../client";
 
@@ -13,15 +13,15 @@ async function fetchCharacterDetailById({
 	mediaSort = "POPULARITY_DESC",
 	voiceActorsLanguage = "JAPANESE",
 	voiceActorsSort = "RELEVANCE",
-}: CharacterDetailQueryQueryVariables) {
+}: CharacterDetailQueryVariables) {
 	const { Character } = await requestAniList({
-		query: CharacterDetailQueryDocument,
+		query: CharacterDetailDocument,
 		variables: {
 			characterId,
 			mediaSort,
 			voiceActorsLanguage,
 			voiceActorsSort,
-		} satisfies Required<CharacterDetailQueryQueryVariables>,
+		} satisfies Required<CharacterDetailQueryVariables>,
 	});
 
 	return Character;

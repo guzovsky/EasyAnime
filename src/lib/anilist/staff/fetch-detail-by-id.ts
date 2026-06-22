@@ -1,8 +1,8 @@
 // --------------------------------------------------------
 
 import {
-	StaffDetailQueryDocument,
-	type StaffDetailQueryQueryVariables,
+	StaffDetailDocument,
+	type StaffDetailQueryVariables,
 } from "@/gql/graphql";
 import { requestAniList } from "../client";
 
@@ -11,13 +11,13 @@ import { requestAniList } from "../client";
 async function fetchStaffDetailById({
 	staffId,
 	characterMediaSort = "POPULARITY_DESC",
-}: StaffDetailQueryQueryVariables) {
+}: StaffDetailQueryVariables) {
 	const { Staff } = await requestAniList({
-		query: StaffDetailQueryDocument,
+		query: StaffDetailDocument,
 		variables: {
 			staffId,
 			characterMediaSort,
-		} satisfies Required<StaffDetailQueryQueryVariables>,
+		} satisfies Required<StaffDetailQueryVariables>,
 	});
 
 	return Staff;

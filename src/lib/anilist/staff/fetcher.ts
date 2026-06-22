@@ -1,14 +1,14 @@
 // --------------------------------------------------------
 
 import { buildFetcher } from "../build-fetcher";
-import { CHARACTER_QUERY_MAP } from "./character-queries";
+import { STAFF_ROUTE_QUERY_MAP } from "./route-queries";
 
 // --------------------------------------------------------
 
-const fetchCharacter = buildFetcher(CHARACTER_QUERY_MAP);
+const fetchStaff = buildFetcher(STAFF_ROUTE_QUERY_MAP);
 
 // --------------------------------------------------------
 
-export { fetchCharacter };
+export { fetchStaff };
 
 // --------------------------------------------------------

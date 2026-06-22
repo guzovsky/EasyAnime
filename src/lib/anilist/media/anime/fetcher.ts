@@ -1,11 +1,11 @@
 // --------------------------------------------------------
 
 import { buildFetcher } from "../../build-fetcher";
-import { ANIME_QUERY_MAP } from "./anime-queries";
+import { ANIME_ROUTE_QUERY_MAP } from "./route-queries";
 
 // --------------------------------------------------------
 
-const fetchAnime = buildFetcher(ANIME_QUERY_MAP);
+const fetchAnime = buildFetcher(ANIME_ROUTE_QUERY_MAP);
 
 // --------------------------------------------------------
 

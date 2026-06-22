@@ -40,7 +40,7 @@ query StaffAll($page: Int, $perPage: Int) {
 
 # -------------------------------------------------- Detail
 
-query StaffDetailQuery($staffId: Int!, $characterMediaSort: [MediaSort]) {
+query StaffDetail($staffId: Int!, $characterMediaSort: [MediaSort]) {
 	Staff(id: $staffId) {
 		...StaffDetail
 	}

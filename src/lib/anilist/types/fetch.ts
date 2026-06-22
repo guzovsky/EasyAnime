@@ -2,30 +2,30 @@
 
 import type {
 	CompoundRouteQuery,
-	QueryMap,
 	QueryVariables,
 	RouteQueryConfig,
+	RouteQueryMap,
 } from "../queries/types";
 
 // --------------------------------------------------------
 
 type CompoundConfig<
 	K extends string,
-	TMap extends QueryMap<K>,
+	TMap extends RouteQueryMap<K>,
 > = TMap[K] extends infer Q extends CompoundRouteQuery
 	? { dataType: keyof Q }
 	: never;
 
 // ---------------------
 
-type CompoundDataType<K extends string, TMap extends QueryMap<K>> =
+type CompoundDataType<K extends string, TMap extends RouteQueryMap<K>> =
 	CompoundConfig<K, TMap> extends never ? never : keyof TMap[K];
 
 // --------------------------------------------------------
 
 type FetchConfig<
 	K extends string,
-	TMap extends QueryMap<K>,
+	TMap extends RouteQueryMap<K>,
 	TDataType extends CompoundDataType<K, TMap>,
 > = TMap[K] extends infer Q extends RouteQueryConfig
 	? CompoundConfig<K, TMap> extends never
@@ -41,7 +41,7 @@ type FetchConfig<
 
 type FetchArgs<
 	K extends string,
-	TMap extends QueryMap<K>,
+	TMap extends RouteQueryMap<K>,
 	TDataType extends CompoundDataType<K, TMap>,
 > =
 	CompoundConfig<K, TMap> extends never
