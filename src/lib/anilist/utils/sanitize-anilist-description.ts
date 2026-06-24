@@ -6,7 +6,7 @@ import DOMPurify from "isomorphic-dompurify";
 
 function sanitizeAniListDescription(html?: string | null) {
 	if (!html) {
-		return "No description available.";
+		return null;
 	}
 
 	return DOMPurify.sanitize(html, {
@@ -29,32 +29,6 @@ function sanitizeAniListDescription(html?: string | null) {
 
 // -------------------------------------------------------------
 
-function sanitizeAniListNode<T>(node: T): T {
-	if (
-		node &&
-		typeof node === "object" &&
-		"description" in node &&
-		typeof node.description === "string"
-	) {
-		return {
-			...node,
-			description: sanitizeAniListDescription(node.description),
-		};
-	}
-	return node;
-}
-
-// ---------------------
-
-function sanitizeAniListNodes<T>(node: T): T {
-	if (Array.isArray(node)) {
-		return node.map((item) => sanitizeAniListNode(item)) as T;
-	}
-	return sanitizeAniListNode(node);
-}
-
-// -------------------------------------------------------------
-
-export { sanitizeAniListNodes };
+export { sanitizeAniListDescription };
 
 // -------------------------------------------------------------

@@ -44,8 +44,8 @@ query TrendingMangaBanner($page: Int, $perPage: Int) {
 
 # ----------------------------------------------------- All
 
-query MangaAll($page: Int, $perPage: Int) {
-	trendingMangaBanner: Page(page: $page, perPage: $perPage) {
+query MangaAll($page: Int, $perPage: Int, $bannerPerPage: Int) {
+	trendingMangaBanner: Page(page: $page, perPage: $bannerPerPage) {
 		media(sort: TRENDING_DESC, type: MANGA) {
 			...MediaBanner
 		}

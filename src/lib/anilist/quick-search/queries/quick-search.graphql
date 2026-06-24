@@ -1,5 +1,5 @@
 query QuickSearch(
-	$search: String
+	$search: String!
 	$page: Int
 	$perPage: Int
 	$animeSort: [MediaSort]

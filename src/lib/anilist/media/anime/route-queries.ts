@@ -9,11 +9,11 @@ import {
 	TrendingAnimeDocument,
 	UpcomingAnimeDocument,
 } from "@/gql/graphql";
-import type { QueryMap } from "../../queries/types";
+import type { RouteQueryMap } from "../../queries/types";
 
 // --------------------------------------------------------
 
-const ANIME_QUERY_MAP = {
+const ANIME_ROUTE_QUERY_MAP = {
 	all: AnimeAllDocument,
 	trending: {
 		card: TrendingAnimeDocument,
@@ -22,10 +22,13 @@ const ANIME_QUERY_MAP = {
 	popular: PopularAnimeDocument,
 	popularThisSeason: PopularThisSeasonAnimeDocument,
 	upcoming: UpcomingAnimeDocument,
-} as const satisfies QueryMap<AnimeRouteKey>;
+} as const satisfies RouteQueryMap<AnimeRouteKey>;
+
+type AnimeRouteQueryMap = typeof ANIME_ROUTE_QUERY_MAP;
 
 // --------------------------------------------------------
 
-export { ANIME_QUERY_MAP };
+export type { AnimeRouteQueryMap };
+export { ANIME_ROUTE_QUERY_MAP };
 
 // --------------------------------------------------------

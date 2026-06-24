@@ -8,11 +8,11 @@ import {
 	TrendingMangaBannerDocument,
 	TrendingMangaDocument,
 } from "@/gql/graphql";
-import type { QueryMap } from "../../queries/types";
+import type { RouteQueryMap } from "../../queries/types";
 
 // --------------------------------------------------------
 
-const MANGA_QUERY_MAP = {
+const MANGA_ROUTE_QUERY_MAP = {
 	all: MangaAllDocument,
 	trending: {
 		card: TrendingMangaDocument,
@@ -20,10 +20,13 @@ const MANGA_QUERY_MAP = {
 	},
 	popular: PopularMangaDocument,
 	popularManhwa: PopularManhwaDocument,
-} as const satisfies QueryMap<MangaRouteKey>;
+} as const satisfies RouteQueryMap<MangaRouteKey>;
+
+type MangaRouteQueryMap = typeof MANGA_ROUTE_QUERY_MAP;
 
 // --------------------------------------------------------
 
-export { MANGA_QUERY_MAP };
+export type { MangaRouteQueryMap };
+export { MANGA_ROUTE_QUERY_MAP };
 
 // --------------------------------------------------------

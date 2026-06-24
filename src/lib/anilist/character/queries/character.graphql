@@ -40,8 +40,8 @@ query CharacterAll($page: Int, $perPage: Int) {
 
 # -------------------------------------------------- Detail
 
-query CharacterDetailQuery(
-	$characterId: Int
+query CharacterDetail(
+	$characterId: Int!
 	$mediaSort: [MediaSort]
 	$voiceActorsLanguage: StaffLanguage
 	$voiceActorsSort: [StaffSort]
