@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Poppins } from "next/font/google";
 import type { ReactNode } from "react";
+import Providers from "./providers";
 
 // --------------------------------------------------------
 
@@ -23,9 +24,15 @@ const poppins = Poppins({
 
 export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
-		<html className={`${poppins.className} antialiased`} lang="en">
+		<html
+			className={`${poppins.className} antialiased`}
+			lang="en"
+			suppressHydrationWarning
+		>
 			<body className="flex h-svh flex-col">
-				<main className="flex flex-1 flex-col">{children}</main>
+				<Providers>
+					<main className="flex flex-1 flex-col">{children}</main>
+				</Providers>
 			</body>
 		</html>
 	);
