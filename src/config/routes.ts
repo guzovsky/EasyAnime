@@ -43,6 +43,8 @@ const DISCOVER = {
 
 // ---------------------
 
+type Discover = typeof DISCOVER;
+
 type AnimeRouteKey = keyof typeof DISCOVER.anime;
 type MangaRouteKey = keyof typeof DISCOVER.manga;
 type CharacterRouteKey = keyof typeof DISCOVER.character;
@@ -53,16 +55,20 @@ type StudioRouteKey = keyof typeof DISCOVER.studio;
 
 const ROUTES = { DISCOVER } as const;
 
+type Routes = typeof ROUTES;
+
 // ------------------------------------------------ Exports
 
 export type {
 	AnimeRouteKey,
 	CharacterRouteKey,
+	Discover,
 	MangaRouteKey,
+	Routes,
 	StaffRouteKey,
 	StudioRouteKey,
 };
 
-export default ROUTES;
+export { DISCOVER, ROUTES };
 
 // --------------------------------------------------------
