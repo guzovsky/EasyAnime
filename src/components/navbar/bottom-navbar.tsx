@@ -13,7 +13,7 @@ function BottomNavbar() {
 				"pointer-events-none",
 				"flex gap-2 self-center font-medium",
 				"sticky bottom-4 mt-8 p-2",
-				"*:pointer-events-auto *:rounded-lg *:border *:border-page/40 *:bg-page/60 *:px-3 *:py-1 *:backdrop-blur"
+				"*:pointer-events-auto *:rounded-lg *:border *:border-page/40 *:bg-page/70 *:px-3 *:py-1 *:backdrop-blur"
 			)}
 		>
 			<Link

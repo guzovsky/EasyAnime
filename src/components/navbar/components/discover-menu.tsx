@@ -19,6 +19,8 @@ import {
 	Popover,
 } from "react-aria-components";
 import { DISCOVER, type Discover } from "@/config/routes";
+import { useScrollable } from "@/hooks/use-scrollable";
+import { cn } from "@/utils/cn";
 import { MenuLink } from "./menu-link";
 
 // --------------------------------------------------------
@@ -33,9 +35,17 @@ type FormatLabel<S extends string> = Capitalize<InsertSpaces<S>>;
 
 // ---------------------
 
-const LINKS = {
-	all: { href: DISCOVER.all, label: "Discover All" },
+interface SubRoute<THref extends string, TLabel extends string> {
+	href: THref;
+	label: TLabel;
+}
+
+// ---------------------
+
+const MENU_CONFIG = {
+	all: { type: "link", href: DISCOVER.all, label: "Discover All" },
 	anime: {
+		type: "section",
 		Icon: Play,
 		label: "Anime",
 		route: DISCOVER.anime.all,
@@ -59,6 +69,7 @@ const LINKS = {
 		},
 	},
 	manga: {
+		type: "section",
 		Icon: BookOpen,
 		label: "Manga",
 		route: DISCOVER.manga.all,
@@ -78,6 +89,7 @@ const LINKS = {
 		},
 	},
 	character: {
+		type: "section",
 		Icon: VenetianMask,
 		label: "Character",
 		route: DISCOVER.character.all,
@@ -93,6 +105,7 @@ const LINKS = {
 		},
 	},
 	staff: {
+		type: "section",
 		Icon: UserRound,
 		label: "Staff",
 		route: DISCOVER.staff.all,
@@ -108,6 +121,7 @@ const LINKS = {
 		},
 	},
 	studio: {
+		type: "section",
 		Icon: Brush,
 		label: "Studio",
 		route: DISCOVER.studio.all,
@@ -121,19 +135,20 @@ const LINKS = {
 } as const satisfies {
 	[K in keyof Discover]: Discover[K] extends Record<string, unknown>
 		? {
+				type: "section";
 				label: FormatLabel<K>;
 				Icon: LucideIcon;
 				route: Discover[K]["all"];
 				subRoutes: {
 					[SK in keyof Omit<Discover[K], "all">]: SK extends string
-						? {
-								label: FormatLabel<SK>;
-								href: Discover[K][SK];
-							}
+						? Discover[K][SK] extends string
+							? SubRoute<Discover[K][SK], FormatLabel<SK>>
+							: never
 						: never;
 				};
 			}
 		: {
+				type: "link";
 				label: "Discover All";
 				href: Discover[K];
 			};
@@ -141,7 +156,36 @@ const LINKS = {
 
 // ---------------------
 
+const MENU_ORDER = [
+	"all",
+	"anime",
+	"manga",
+	"character",
+	"staff",
+	"studio",
+] as const satisfies (keyof typeof DISCOVER)[];
+
+// ---------------------
+
+const MENU_ITEMS = MENU_ORDER.map((key) => {
+	const item = MENU_CONFIG[key];
+
+	if (item.type === "link") {
+		return item;
+	}
+
+	return {
+		...item,
+		subRoutes: Object.values(item.subRoutes) as SubRoute<string, string>[],
+	};
+});
+
+// ---------------------
+
 function DiscoverMenu() {
+	const { isScrollableVertical, canScrollDown, canScrollUp, ref } =
+		useScrollable();
+
 	return (
 		<MenuTrigger>
 			<Button className="group flex items-center gap-0.5 rounded-md outline-none hover:text-border-focus focus-visible:text-border-focus aria-expanded:text-border-focus">
@@ -149,53 +193,76 @@ function DiscoverMenu() {
 				<ChevronDown className="size-4.5 transition-transform group-aria-expanded:rotate-180" />
 			</Button>
 			<Popover
-				className="w-60 overflow-y-auto rounded-lg border border-page/40 bg-page/60 px-2 py-2 shadow-lg backdrop-blur"
+				className={cn(
+					"relative flex w-50 flex-col overflow-hidden rounded-lg border border-page/40 bg-page/70 backdrop-blur"
+				)}
 				crossOffset={-15}
 				offset={14}
 				placement="top start"
 			>
-				<Menu className="flex flex-col gap-2 outline-none">
-					{Object.values(LINKS).map((v) => {
-						if ("href" in v) {
+				<div
+					className="scrollbar-hide max-h-[40svh] min-h-0 flex-1 overflow-y-auto px-2 py-2"
+					ref={ref}
+				>
+					<Menu className="flex flex-col gap-2 outline-none">
+						{MENU_ITEMS.map((item) => {
+							if (item.type === "link") {
+								return (
+									<MenuLink
+										className="rounded-md pl-1 font-semibold"
+										href={item.href}
+										key={item.href}
+									>
+										{item.label}
+									</MenuLink>
+								);
+							}
+							const { Icon, label, route, subRoutes } = item;
 							return (
-								<MenuLink
-									className="rounded-md pl-1 font-semibold"
-									href={v.href}
-									key={v.label}
+								<MenuSection
+									aria-label={label}
+									className="flex flex-col gap-0.5"
+									key={route}
 								>
-									{v.label}
-								</MenuLink>
-							);
-						}
-						const { Icon, label, route, subRoutes } = v;
-						return (
-							<MenuSection
-								aria-label={label}
-								className="flex flex-col gap-0.5"
-								key={label}
-							>
-								<MenuLink
-									className="flex items-center gap-1 rounded-md pl-2 font-medium"
-									href={route}
-								>
-									<Icon className="size-3 stroke-3" />
-									{label}
-								</MenuLink>
-								{Object.values(subRoutes).map(
-									(v: { href: string; label: string }) => (
+									<MenuLink
+										className="flex items-center gap-1 rounded-md pl-2 font-medium"
+										href={route}
+									>
+										<Icon className="size-3 stroke-3" />
+										{label}
+									</MenuLink>
+									{subRoutes.map((subRoute) => (
 										<MenuLink
-											className="rounded-md pl-3 text-sm tracking-tight"
-											href={v.href}
-											key={v.href}
+											className="rounded-md pl-6 text-sm tracking-tight"
+											href={subRoute.href}
+											key={subRoute.href}
 										>
-											{v.label}
+											{subRoute.label}
 										</MenuLink>
-									)
-								)}
-							</MenuSection>
-						);
-					})}
-				</Menu>
+									))}
+								</MenuSection>
+							);
+						})}
+					</Menu>
+				</div>
+				<div
+					aria-hidden
+					className={cn(
+						"pointer-events-none absolute inset-x-0 top-0 z-10 h-8 bg-linear-to-b from-page/70 to-transparent transition-opacity duration-200",
+						isScrollableVertical && canScrollUp
+							? "opacity-100"
+							: "opacity-0"
+					)}
+				/>
+				<div
+					aria-hidden
+					className={cn(
+						"pointer-events-none absolute inset-x-0 bottom-0 z-10 h-8 bg-linear-to-t from-page/70 to-transparent transition-opacity duration-200",
+						isScrollableVertical && canScrollDown
+							? "opacity-100"
+							: "opacity-0"
+					)}
+				/>
 			</Popover>
 		</MenuTrigger>
 	);
